@@ -13,11 +13,12 @@ export const GlobalStyle = createGlobalStyle`
         --primary-color3: 'color: reba (34, 34, 96, .4) ';
         --color-green: #42AD00;
         --color-grey: #aaa;
-        --color -accent: #F56692;
+        --color-accent: #F56692;
         --color-delete: #FF0000;
     }
 
     body{
-        background-color: grey;
+        font-family: 'Hind', sans-serif;
+        background-color: #dee2e6;
     }
 `;
