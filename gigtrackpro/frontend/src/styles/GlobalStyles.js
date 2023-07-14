@@ -17,8 +17,9 @@ export const GlobalStyle = createGlobalStyle`
         --color-delete: #FF0000;
     }
 
-    body{
+    html, body{
+        overflow: hidden;
         font-family: 'Hind', sans-serif;
-        background-color: #dee2e6;
+        background-color: #EEEEEE;
     }
 `;

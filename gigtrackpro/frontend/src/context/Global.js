@@ -17,10 +17,25 @@ export const GlobalProvider = ({children}) => {
                 setError(err.response.data.message)
             })
     }
-   
+    const getEarnings = async () => {
+        try {
+            const response = await axios.get(`${BASE_URL}get-earning`)
+            setEarnings(response.data)
+            // console.log(response.data)
+            // Process the response.data here
+        } catch (error) {
+            if (error.response) {
+                setError(error.response.data.message);
+            } else {
+                setError("An error occurred while making the request.")
+            }
+        }
+    }
     return (
         <GlobalContext.Provider value ={{
-            addEarnings
+            addEarnings,
+            getEarnings,
+            earnings
         }}>
             {children}
         </GlobalContext.Provider>

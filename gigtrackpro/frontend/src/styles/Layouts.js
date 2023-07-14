@@ -1,13 +1,19 @@
 import styled from 'styled-components';
 
 export const Mainlayout = styled.div`
-    padding: 2rem;
+    padding: 0rem;
     height: 100%;
     display: flex;
-    gap: 2rem; 
+    /* gap: 2rem;  */
 `;
 
 export const Innerlayout = styled.div`
-    padding: 2rem 1.5rem;
+    /* padding: 2rem 1.5rem; */
+    background-color: #f8f7f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
     width: 100%;
+    height: 100vh;
 `;

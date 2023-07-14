@@ -6,8 +6,8 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Statistics from './components/Statistics/Statistics';
 import Statement from './components/Statement/Statement';
 import Earnings from './components/Earnings/Earnings';
-import { useGlobalContext } from './context/Global';
 import EarningsModal from './components/Modal/EarningsModal';
+import { useGlobalContext } from './context/Global';
 
 function App() {
 
@@ -33,11 +33,29 @@ function App() {
         }
     }
 
+    const displayNavSelect = () => {
+        switch(active){
+            case 1:
+                return <h2>Dashboard</h2>
+            case 2: 
+                return <h2>Earnings</h2>
+            case 3:
+                return <h2>Statistics</h2>
+            case 4:
+                return <h2>Statement</h2>
+            default:
+                return <h2>Dashboard</h2>
+        }
+    }
+
     return (
     <AppStyled className="App">
         <Mainlayout>
             <Navigation active={ active } setActive={ setActive }/>
             <main>
+                <div className='hellotest'> 
+                    {displayNavSelect()} 
+                </div>
                 {displayData()}
             </main>
         </Mainlayout>
@@ -46,13 +64,22 @@ function App() {
 }
 
 const AppStyled = styled.div`
+    .hellotest{
+        background-color: #f8f7f0;
+        height: 10vh;
+        padding: 2rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
     height: 100vh;
     position: relative;
     main{
         flex: 1; 
         background-color: white;
-        border-radius: 20px;
-        overflow: auto;
+        /* border-radius: 20px; */
+        overflow: hidden;
         overflow-x: hidden;
         &::-webkit-scrollbar{
             width: 0;

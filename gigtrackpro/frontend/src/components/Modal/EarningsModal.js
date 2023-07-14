@@ -17,23 +17,20 @@ function EarningsModal (){
     }
 
     return (
-        <EarningsModalStyled >
-            <button
-                onClick={toggleModal}
-                className="btn-modal"
-            >
-                Log trip
+        <EarningsModalStyled>
+            <button onClick={toggleModal} className="btn-modal">
+                <h3>Log trip</h3>
             </button>
             {modal && (
                 <div className="modal">
                     <div className="overlay" onClick={toggleModal}></div>
                     <div className="modal-content">
-                        <h2>Log Earnings</h2>
+                        <h1 className="modal-heading">Log Earnings</h1>
                         <Form onClick={toggleModal}/>
                         <button 
                             className="close-modal" 
                             onClick={toggleModal}
-                        >Closed
+                        >X
                         </button>
                     </div>
                 </div>
@@ -43,17 +40,42 @@ function EarningsModal (){
 }
 
 const EarningsModalStyled = styled.nav`
+
+    .modal-heading {
+        color: #2c2c2c;
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
     body.active-modal {
         overflow-y: hidden;
     }
 
     .btn-modal {
-        padding: 10px 20px;
-        display: block;
-        margin: 100px auto 0;
-        font-size: 18px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        background-color: #3FC060;
+        color: white;
+        cursor: pointer;
+        place-items: center;
+        text-align: center;
+        border: none;
+        height: 30px;
+        width: 120px;
+        border-radius: 7px;
+        letter-spacing: 2px;
+        h3{
+            margin-left: 5px;
+            font-size: 15px;
+            font-weight: 100;
+        } 
     }
-
+    .modal{
+        z-index: 9999;
+    }
     .modal, .overlay {
         width: 100vw;
         height: 100vh;
@@ -71,16 +93,22 @@ const EarningsModalStyled = styled.nav`
         position: absolute;
         top: 40%;
         left: 50%;
+        width: 22rem;
         transform: translate(-50%, -50%);
         line-height: 1.4;
         background: #f1f1f1;
-        padding: 2rem 2rem;
+        padding: 1rem 1rem;
         border-radius: 10px;
         max-width: 600px;
         min-width: 300px;
     }
 
     .close-modal {
+        cursor: pointer;
+        background-color: none;
+        color: #7D7D7D;
+        font-size: 15px;
+        border: none;
         position: absolute;
         top: 10px;
         right: 10px;

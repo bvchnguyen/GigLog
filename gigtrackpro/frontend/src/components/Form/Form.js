@@ -31,18 +31,18 @@ function Form () {
     return (
         <FormStyled onSubmit={handleSubmit}>
             <div className="input-control">
-                <h3>Earnings</h3>
+                {/* <h3 className="box-title">Earnings</h3> */}
                 <input
                     autoComplete="off"
                     type="text"
                     value={amount}
                     name={'amount'}
-                    placeholder="$123.45"
+                    placeholder="Earnings"
                     onChange={handleInput('amount')}
                 />
             </div>
             <div className="input-control">
-                <h3>Completed Trip</h3>
+                {/* <h3 className="box-title">Trip</h3> */}
                 <input
                     autoComplete="off"
                     type="text"
@@ -53,11 +53,11 @@ function Form () {
                 />
             </div>
             <div className="input-control">
-                <h3>Date</h3>
+                {/* <h3 className="box-title">Date</h3> */}
                 <DatePicker
                     autoComplete="off"
                     id='date'
-                    placeholderText="Enter A Date"
+                    placeholderText="Enter Trip Date"
                     selected={date}
                     dateFormat="MM/dd/yyyy"
                     onChange={(date) => {
@@ -65,10 +65,10 @@ function Form () {
                     }}
                 />
             </div>
-            <h3>App</h3>
-            <div className="select input-control">
+            {/* <h3 className="box-title-app">App</h3> */}
+            <div className="select-input-control">
                 <select required value = {category} name="category" id="category" onChange={handleInput('category')}>
-                    <option value="" disabled >Select App</option>
+                    <option value="" disabled id="d-select">Select App</option>
                     <option value="Uber Eats" >Uber Eats</option>
                     <option value="DoorDash"  >DoorDash</option>
                     <option value="Grubhub"   >GrubHub</option>
@@ -88,16 +88,19 @@ const FormStyled = styled.form`
     gap: 1rem;
     input, textarea, select{
         height: 40px;
-        font-family: 'Roboto', sans-serif;
-        font-weight: 100;
+        /* font-family: 'Roboto', sans-serif; */
+        font-size: 1rem;
+        font-family: inherit;
+        font-weight: none;
         outline: none;
-        border: 1px solid #565656;
+        border: 1px solid #D0D0D0;
         border-radius: 6px;
         padding: .5rem 1rem;
         background: transparent;
         resize: none;
         &::placeholder{
-            color: #ededed;
+            font-size: 17px;
+            color: #B2B2B2;
         }
     }
     .input-control{
@@ -109,13 +112,15 @@ const FormStyled = styled.form`
         width: 100%;
     }
     #date{
-            width: 100%;
+            width: 320px;
     }
     .log-button{
+        margin-top: 10px;
         background-color: #3FC060;
         color: white;
         cursor: pointer;
-        font-size: 15px;
+        font-size: 17px;
+        font-weight: bold;
         display: grid;
         place-items: center;
         text-align: center;
@@ -124,12 +129,18 @@ const FormStyled = styled.form`
         height: 50px;
         width: 100%;
         place-items: center;
-        border-radius: 10px;
+        border-radius: 7px;
         text-decoration: none;
         letter-spacing: 2px;
         box-shadow: inset 0 0 0 0 #FF4B38;
-        transition: 0.5s ease-out;
-}
+    }
+    .box-title{
+        font-weight: 200;
+        margin-bottom: .5rem;
+    }
+    .box-title-app{
+        font-weight: 200;
+    }
 
 `;
 
