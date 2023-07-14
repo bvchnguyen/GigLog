@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "../Form/Form";
 import styled from 'styled-components';
 
@@ -8,13 +8,14 @@ function EarningsModal (){
     const toggleModal = () => {
         setModal(!modal)
     }
-    
-    if(modal){
-        document.body.classList.add('active-modl')
-    }
-    else{
-        document.body.classList.remove('active-modl')
-    }
+    useEffect(() => {
+        if (modal) {
+          document.body.classList.add('active-modl');
+        } 
+        else {
+          document.body.classList.remove('active-modl');
+        }
+    }, [modal]);
 
     return (
         <EarningsModalStyled>
@@ -26,7 +27,7 @@ function EarningsModal (){
                     <div className="overlay" onClick={toggleModal}></div>
                     <div className="modal-content">
                         <h1 className="modal-heading">Log Earnings</h1>
-                        <Form onClick={toggleModal}/>
+                        <Form toggleModal={toggleModal}/>
                         <button 
                             className="close-modal" 
                             onClick={toggleModal}

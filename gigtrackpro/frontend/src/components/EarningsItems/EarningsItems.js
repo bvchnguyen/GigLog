@@ -2,6 +2,10 @@ import React from "react";
 import styled from 'styled-components';
 import moment from 'moment';
 import  {trash, dollar, calendar, dash} from "../../utils/Icons";
+import UberEatsImage from '../../img/uberEats.png';
+import UberPaxImage from '../../img/uber.png';
+import DoorDashImage from '../../img/DD.png';
+import GrubhubImage from '../../img/GrubHub.png';
 
 function EarningsItems ({
     id,
@@ -9,14 +13,31 @@ function EarningsItems ({
     trip,
     category,
     description,
-    date
+    date,
     }) {
 
     const formattedDate = moment(date).format('MM-DD-YYYY');
 
+    const categoryIcon = () => {
+        switch (category) {
+          case 'Uber Eats':
+            return <img src={UberEatsImage} alt="Uber Eats" />;
+          case 'DoorDash':
+            return <img src={DoorDashImage} alt="DoorDash" />;
+          case 'Grubhub':
+            return <img src={GrubhubImage} alt="GrubHub" />;
+          case 'Uber Pax':
+            return <img src={UberPaxImage} alt="Uber Passenger" />;
+          default:
+            return null;
+        }
+    }
+
     return (
         <EarningsItemsStyled>
-            <div className="icon"></div>
+            <div className="icon">
+                {categoryIcon()}
+            </div>
             <div className="content">
                 <h4>{category}</h4>
                 <div className="inner-content">
@@ -53,15 +74,20 @@ const EarningsItemsStyled = styled.div`
     }
     .icon{
         width: 60px;
+        padding: .2rem;
         height: 60px;
         border-radius: 20px; 
-        background: #F5F5F5;
+        background: white;
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 2px solid #FFFFFF;
-        i{
-            font-size: 2.6rem;
+        overflow: hidden;
+        /* border: 2px solid #FFFFFF; */
+        img{
+            
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
     }
     .content{

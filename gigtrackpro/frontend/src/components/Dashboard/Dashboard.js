@@ -11,7 +11,7 @@ function Dashboard () {
 
     useEffect(() =>{
         getEarnings()    
-    }, [])
+    }, [earnings])
 
     return (
         <DashboardStyled>
@@ -46,7 +46,7 @@ function Dashboard () {
 }
 
 const DashboardStyled = styled.div`
-
+    order: 3;
     .earnings-content{
         display: flex;
         justify-content: flex-end;
@@ -67,7 +67,7 @@ const DashboardStyled = styled.div`
         background-color: #f2eee2;
         height: 50px;
         width: 100%;
-        z-index: 9999;
+        z-index: 1;
         padding: 1rem;
         padding-left: 0;
         h3{

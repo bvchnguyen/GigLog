@@ -5,9 +5,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useGlobalContext } from "../../context/Global";
 
 
-function Form () {
+function Form ({ toggleModal }) {
     
-    const {addEarnings} = useGlobalContext()
+    const {addEarnings, getEarnings} = useGlobalContext()
 
     const [inputState, setInputState] = useState({
         amount: '',
@@ -26,8 +26,9 @@ function Form () {
     const handleSubmit = e => {
         e.preventDefault()
         addEarnings(inputState)
+        toggleModal()
+        getEarnings()
     }
-
     return (
         <FormStyled onSubmit={handleSubmit}>
             <div className="input-control">
@@ -70,6 +71,7 @@ function Form () {
                 <select required value = {category} name="category" id="category" onChange={handleInput('category')}>
                     <option value="" disabled id="d-select">Select App</option>
                     <option value="Uber Eats" >Uber Eats</option>
+                    <option value="Uber Pax" >Uber Passenger</option>
                     <option value="DoorDash"  >DoorDash</option>
                     <option value="Grubhub"   >GrubHub</option>
                     <option value="InstaCart" >InstaCart</option>
