@@ -1,11 +1,12 @@
 import React from "react";
 import styled from 'styled-components';
 import moment from 'moment';
-import  {trash, dollar, calendar, dash} from "../../utils/Icons";
+import  {trashDel, dollar, calendar, dash} from "../../utils/Icons";
 import UberEatsImage from '../../img/uberEats.png';
 import UberPaxImage from '../../img/uber.png';
 import DoorDashImage from '../../img/DD.png';
 import GrubhubImage from '../../img/GrubHub.png';
+import InstaCartImage from '../../img/instacart.png';
 
 function EarningsItems ({
     id,
@@ -14,22 +15,25 @@ function EarningsItems ({
     category,
     description,
     date,
+    deleteItem
     }) {
 
     const formattedDate = moment(date).format('MM-DD-YYYY');
 
     const categoryIcon = () => {
         switch (category) {
-          case 'Uber Eats':
-            return <img src={UberEatsImage} alt="Uber Eats" />;
-          case 'DoorDash':
-            return <img src={DoorDashImage} alt="DoorDash" />;
-          case 'Grubhub':
-            return <img src={GrubhubImage} alt="GrubHub" />;
-          case 'Uber Pax':
-            return <img src={UberPaxImage} alt="Uber Passenger" />;
-          default:
-            return null;
+            case 'Uber Eats':
+                return <img src={UberEatsImage} alt="Uber Eats" />;
+            case 'DoorDash':
+                return <img src={DoorDashImage} alt="DoorDash" />;
+            case 'Grubhub':
+                return <img src={GrubhubImage} alt="GrubHub" />;
+            case 'Uber Pax':
+                return <img src={UberPaxImage} alt="Uber Passenger" />;
+            case 'InstaCart':
+                return <img src={InstaCartImage} alt="InstaCart" />;
+            default:
+                return null;
         }
     }
 
@@ -39,13 +43,17 @@ function EarningsItems ({
                 {categoryIcon()}
             </div>
             <div className="content">
+                <div className="cat-container">
                 <h4>{category}</h4>
+                <div className="btn-con">
+                    <button onClick={() => {deleteItem(id)} }>{ trashDel }</button>
+                </div>
+                </div>
                 <div className="inner-content">
                     <div className="text">
                         <p> {trip} Trips</p>
                         <p> {dash} {formattedDate} </p>
                     </div>
-                        {/* <h2> {dollar}{amount} </h2> */}
                 </div>
             </div>
             <div className="amount-con">
@@ -71,6 +79,11 @@ const EarningsItemsStyled = styled.div`
     
     &:hover{
         background-color: white;
+        .btn-con{
+            button{
+                background-color: white;
+            }
+        }
     }
     .icon{
         width: 60px;
@@ -100,6 +113,20 @@ const EarningsItemsStyled = styled.div`
             color: #2c2c2c;
             font-size: 1rem; 
             position: relative;
+            margin-right: 6px;
+        }
+    }
+    .cat-container{
+        display: flex;
+        flex-direction: row;
+        button{
+            cursor: pointer;
+            border: none;
+            background-color: #f8f7f0;
+            color: #bfbfbf;
+        }
+        button:hover{
+            color: #2c2c2c;
         }
     }
     .inner-content{

@@ -4,27 +4,28 @@ import { Innerlayout } from "../../styles/Layouts";
 import { useGlobalContext } from "../../context/Global";
 import EarningsModal from "../Modal/EarningsModal";
 import EarningsItems from "../EarningsItems/EarningsItems";
+import GeneralInfo from "../GeneralInfo/GeneralInfo";
 
 function Dashboard () {
     
-    const {addEarnings, earnings, getEarnings} = useGlobalContext()
+    const {addEarnings, getEarnings, earnings, deleteEarnings } = useGlobalContext()
 
     useEffect(() =>{
         getEarnings()    
-    }, [earnings])
+    }, [])
 
     return (
         <DashboardStyled>
             <Innerlayout>
                <div className="earnings-content">
+                <GeneralInfo />
                     <div className="form-container">
-                        {/* <EarningsModal /> */}
                     </div>
                     <div className="earnings-container">
-                        <div className="earnings">
-                            <div className="earnings-heading">
+                    <div className="earnings-heading">
                                 <h3>Recent Trips</h3>   
                             </div>
+                        <div className="earnings">
                             {earnings.map((earning) => {
                                 const {_id, amount, trip, category, description, date } = earning;
                                 return <EarningsItems 
@@ -35,6 +36,7 @@ function Dashboard () {
                                     category={category}
                                     description={description}
                                     date={date}
+                                    deleteItem={deleteEarnings}
                                 />
                             })}
                         </div>
@@ -54,12 +56,18 @@ const DashboardStyled = styled.div`
     }
     .earnings-container{
         display: flex;
+        flex-direction: column;
+        padding-bottom: 2rem;
         overflow: auto;
         padding: 2rem;
         padding-top: 0;
         width: 100%;
-        height: 50vh;
+        max-height: 50vh;
         background-color: #f2eee2;
+    }
+    .earnings{
+        position: relative;
+        height: 100vh;
     }
     .earnings-heading{
         position: sticky;

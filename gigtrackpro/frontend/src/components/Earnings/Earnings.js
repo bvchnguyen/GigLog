@@ -7,7 +7,7 @@ import EarningsItems from "../EarningsItems/EarningsItems";
 
 function Earnings () {
     
-    const {addEarnings, earnings, getEarnings} = useGlobalContext()
+    const {addEarnings, earnings, getEarnings, deleteEarnings} = useGlobalContext()
 
     useEffect(() =>{
         getEarnings()    

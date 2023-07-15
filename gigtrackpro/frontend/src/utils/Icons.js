@@ -5,6 +5,8 @@ export const signout = <i className="fa-solid fa-arrow-right-from-bracket"></i>
 export const calendar = <i class="fa-solid fa-calendar"></i>
 export const earning = <i className="fa-solid fa-money-bills"></i>
 export const dollar = <i class="fa-solid fa-dollar-sign"></i>
-export const trash = <i class="fa-solid fa-trash"></i>
+export const trashDel = <i class="fa-regular fa-square-minus"></i>
 export const plus = <i class="fa-solid fa-plus"></i>
 export const dash = <i class="fa-solid fa-minus"></i>
+export const cash = <i class="fa-solid fa-money-check-dollar"></i>
+export const car = <i class="fa-solid fa-car"></i>
