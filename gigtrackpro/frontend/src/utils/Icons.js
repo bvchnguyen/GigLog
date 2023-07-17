@@ -10,3 +10,4 @@ export const plus = <i class="fa-solid fa-plus"></i>
 export const dash = <i class="fa-solid fa-minus"></i>
 export const cash = <i class="fa-solid fa-money-check-dollar"></i>
 export const car = <i class="fa-solid fa-car"></i>
+export const gear = <i class="fa-solid fa-gear"></i>

@@ -8,6 +8,7 @@ import Statement from './components/Statement/Statement';
 import Earnings from './components/Earnings/Earnings';
 import EarningsModal from './components/Modal/EarningsModal';
 import { useGlobalContext } from './context/Global';
+import RenderItems from './components/EarningsItems/RenderItems';
 
 function App() {
 
@@ -53,17 +54,22 @@ function App() {
         <Mainlayout>
             <Navigation active={ active } setActive={ setActive }/>
             <main>
-                <div className='hellotest'> 
-                    {displayNavSelect()} 
+                <div className='hellotest'>
+                    {displayNavSelect()}
                 </div>
-                {displayData()}
+                <div>
+                    {displayData()}
+                </div>
             </main>
+            <RenderItems />
         </Mainlayout>
     </AppStyled>
   );
 }
 
 const AppStyled = styled.div`
+    height: 100vh;
+    /* position: relative; */
     .hellotest{
         background-color: #f8f7f0;
         height: 10vh;
@@ -73,10 +79,13 @@ const AppStyled = styled.div`
         justify-content: space-between;
         align-items: center;
     }
-    height: 100vh;
-    position: relative;
     main{
-        flex: 1; 
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        width: 100%;
+        /* background-color: white; */
         background-color: white;
         /* border-radius: 20px; */
         overflow: hidden;
