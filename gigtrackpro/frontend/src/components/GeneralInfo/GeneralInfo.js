@@ -1,13 +1,13 @@
 import React from "react";
 import styled from 'styled-components';
 import { useGlobalContext } from "../../context/Global";
-import  { cash, car } from "../../utils/Icons";
+import  { cash, car, gear } from "../../utils/Icons";
 import EarningsModal from "../Modal/EarningsModal";
 import EarningsItems from "../EarningsItems/EarningsItems";
 
 function GeneralInfo () {
     
-    const {totalEarnings, totalTrips} = useGlobalContext()
+    const {totalEarnings, totalTrips, totalDistance} = useGlobalContext()
     
     return (
         <GeneralInfoStyled>
@@ -25,6 +25,12 @@ function GeneralInfo () {
                     <p>Your 2023</p>
                     <p>Completed Trips</p>
                 </div>
+                <div className="totalDistance-container">
+                    <div className="totalDistance-icon">{ gear }</div>
+                    <h2>{totalDistance()}mi</h2>
+                    <p>2023</p>
+                    <p>Mileage Driven</p>
+                </div>
             </div>
 
             </GeneralInfoStyled>
@@ -37,9 +43,10 @@ const GeneralInfoStyled = styled.div`
     .GeneralInfo-container{
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: flex-start;
+        gap: 1rem;
     }
-    .totalEarnings-container, .totalTrips-container {
+    .totalEarnings-container, .totalTrips-container, .totalDistance-container {
         display: flex;
         flex-direction: column;
         width: 180px;
@@ -49,11 +56,11 @@ const GeneralInfoStyled = styled.div`
         background-color: #76c486;
         h2{
             letter-spacing: 1px;
-            font-size: 1.7vw;
+            font-size: 30px;
             margin-top: 10px;
             margin-bottom: 20px;
         }
-        .totalEarnings-icon, .totalTrips-icon{
+        .totalEarnings-icon, .totalTrips-icon, .totalDistance-icon{
             font-size: 30px;
         }
         p{
