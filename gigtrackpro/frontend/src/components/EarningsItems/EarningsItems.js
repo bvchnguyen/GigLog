@@ -1,7 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
 import moment from 'moment';
-import  {trashDel, dollar, calendar, dash} from "../../utils/Icons";
+import  {trashDel, dollar, calendar, dash } from "../../utils/Icons";
 import UberEatsImage from '../../img/uberEats.png';
 import UberPaxImage from '../../img/uber.png';
 import DoorDashImage from '../../img/DD.png';
@@ -14,6 +14,7 @@ function EarningsItems ({
     trip,
     category,
     description,
+    totalDist,
     date,
     deleteItem
     }) {
@@ -52,6 +53,7 @@ function EarningsItems ({
                 <div className="inner-content">
                     <div className="text">
                         <p> {trip} Trips</p>
+                        <p> {dash} { totalDist } </p>
                         <p> {dash} {formattedDate} </p>
                     </div>
                 </div>
@@ -86,10 +88,10 @@ const EarningsItemsStyled = styled.div`
         }
     }
     .icon{
-        width: 60px;
+        width: 100px;
         padding: .2rem;
         height: 60px;
-        border-radius: 20px; 
+        border-radius: 15px; 
         background: white;
         display: flex;
         align-items: center;
@@ -104,7 +106,6 @@ const EarningsItemsStyled = styled.div`
         }
     }
     .content{
-        flex: 1;
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -140,11 +141,11 @@ const EarningsItemsStyled = styled.div`
             gap: .5rem;
             p{
                 font-family: Arial, Helvetica, sans-serif;
-                font-size: .8rem;
+                font-size: .7rem;
                 font-weight: 100;
                 display: flex;
                 align-items: center;
-                gap: 0.5rem;
+                /* gap: 0.5rem; */
                 opacity: 0.5;
             }
         }

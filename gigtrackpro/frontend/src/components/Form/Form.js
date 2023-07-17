@@ -4,7 +4,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useGlobalContext } from "../../context/Global";
 
-
 function Form ({ toggleModal }) {
     
     const {addEarnings, getEarnings} = useGlobalContext()
@@ -15,9 +14,11 @@ function Form ({ toggleModal }) {
         date: '',
         category: '',
         description: '',
+        startingMi: '',
+        endingMi: ''
     })
     
-    const { amount, trip, date, category, description } = inputState; 
+    const { amount, trip, date, category, description, startingMi, endingMi } = inputState; 
 
     const handleInput = name => e => {
         setInputState({...inputState, [name]: e.target.value})
@@ -51,6 +52,28 @@ function Form ({ toggleModal }) {
                     name={'trip'}
                     placeholder="Trips Completed"
                     onChange={handleInput('trip')}
+                />
+            </div>
+            <div className="input-control">
+                {/* <h3 className="box-title">Trip</h3> */}
+                <input
+                    autoComplete="off"
+                    type="text"
+                    value={startingMi}
+                    name={'startingMi'}
+                    placeholder="Starting mi"
+                    onChange={handleInput('startingMi')}
+                />
+            </div>
+            <div className="input-control">
+                {/* <h3 className="box-title">Trip</h3> */}
+                <input
+                    autoComplete="off"
+                    type="text"
+                    value={endingMi}
+                    name={'endingMi'}
+                    placeholder="Ending mi"
+                    onChange={handleInput('endingMi')}
                 />
             </div>
             <div className="input-control">
