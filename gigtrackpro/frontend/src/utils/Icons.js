@@ -11,3 +11,5 @@ export const dash = <i class="fa-solid fa-minus"></i>
 export const cash = <i class="fa-solid fa-money-check-dollar"></i>
 export const car = <i class="fa-solid fa-car"></i>
 export const gear = <i class="fa-solid fa-gear"></i>
+export const right = <i class="fa-solid fa-chevron-right"></i>
+export const left = <i class="fa-solid fa-chevron-left"></i>
