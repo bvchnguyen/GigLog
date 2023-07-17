@@ -1,12 +1,14 @@
 const EarningsSchema = require("../models/EarningsModel");
 
 exports.addEarnings = async (req, res) => {
-    const { amount, trip, category, description, date } = req.body
+    const { amount, trip, category, description, date, startingMi, endingMi } = req.body
     const earnings = EarningsSchema({
         amount,
         trip,
         category,
-        date
+        date,
+        startingMi,
+        endingMi
     })
 
     try{
@@ -39,6 +41,6 @@ exports.deleteEarnings = async (req, res) => {
         res.status(200).json({message: 'Earnings Deleted.'})
 
     }).catch((err) => {
-        res.status(500).json({message: 'Server Error.'})
+        res.status(500).json({message: 'Delete Earnings Server Error.'})
     })
 }

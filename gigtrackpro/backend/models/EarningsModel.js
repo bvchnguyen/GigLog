@@ -26,6 +26,16 @@ const EarningsSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    startingMi: {
+        type: Number,
+        require: false,
+        trim: true
+    },
+    endingMi: {
+        type: Number,
+        require: false,
+        trim: true
+    }
 }, {timestamps: true})
 
 module.exports = mongoose.model('Earnings', EarningsSchema)
