@@ -71,7 +71,15 @@ export const GlobalProvider = ({children}) => {
         })
         return totalTripsMade;
     }
-
+    const totalDistance = () =>{
+        let eachDistance = 0;
+        let totalDistance = 0;
+        earnings.forEach((earning) => {
+            eachDistance = earning.endingMi - earning.startingMi
+            totalDistance += eachDistance
+        })
+        return totalDistance;
+    }
     console.log('Total Income: ', totalEarnings())
     console.log('Total Trips: ', totalTrips())
 
@@ -82,7 +90,8 @@ export const GlobalProvider = ({children}) => {
             earnings,
             deleteEarnings,
             totalEarnings,
-            totalTrips
+            totalTrips,
+            totalDistance
         }}>
             {children}
         </GlobalContext.Provider>
