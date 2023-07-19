@@ -7,7 +7,6 @@ import dateFormat from 'dateformat';
 import {Chart as ChartJs,
     CategoryScale, 
     LinearScale, 
-    PointElement, 
     BarElement, 
     Title, 
     Tooltip, 
@@ -26,7 +25,7 @@ ChartJs.register(
 )
 
 function StatsChart() {
-    const { earnings, expenses } = useGlobalContext();
+    const { earnings } = useGlobalContext();
     const [currentWeekIndex, setCurrentWeekIndex] = useState(0);
 
     // Group earnings by date
@@ -73,8 +72,12 @@ function StatsChart() {
             data: data,
             backgroundColor: '#2c2c2c',
             borderColor: '#2c2c2c',
-            borderRadius: 10,
-            borderWidth: 1,
+            // borderRadius: 10,
+            // borderWidth: 1,
+            // backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
+            borderWidth: 2,
+            borderRadius: Number.MAX_VALUE,
+            borderSkipped: false,
         },
         ],
     };
