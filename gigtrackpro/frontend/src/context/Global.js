@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react"
 import axios from "axios"
-import { earning } from "../utils/Icons";
 
 const BASE_URL = 'http://localhost:3000/api/v1/';
 
@@ -80,8 +79,11 @@ export const GlobalProvider = ({children}) => {
         })
         return totalDistance;
     }
-    console.log('Total Income: ', totalEarnings())
-    console.log('Total Trips: ', totalTrips())
+    const getAverageTripRatio = () => {
+        return (totalEarnings() / totalDistance()).toFixed(1);
+    }
+    // console.log('Total Income: ', totalEarnings())
+    // console.log('Total Trips: ', totalTrips())
 
     return (
         <GlobalContext.Provider value ={{
@@ -91,7 +93,8 @@ export const GlobalProvider = ({children}) => {
             deleteEarnings,
             totalEarnings,
             totalTrips,
-            totalDistance
+            totalDistance,
+            getAverageTripRatio
         }}>
             {children}
         </GlobalContext.Provider>
