@@ -7,7 +7,6 @@ import { useGlobalContext } from "../../context/Global";
 function Form ({ toggleModal }) {
     
     const {addEarnings, getEarnings} = useGlobalContext()
-
     const [inputState, setInputState] = useState({
         amount: '',
         trip: '',
@@ -17,7 +16,6 @@ function Form ({ toggleModal }) {
         startingMi: '',
         endingMi: ''
     })
-    
     const { amount, trip, date, category, description, startingMi, endingMi } = inputState; 
 
     const handleInput = name => e => {
@@ -33,8 +31,8 @@ function Form ({ toggleModal }) {
     return (
         <FormStyled onSubmit={handleSubmit}>
             <div className="input-control">
-                {/* <h3 className="box-title">Earnings</h3> */}
                 <input
+                    className={'input-highlight'}
                     autoComplete="off"
                     type="text"
                     value={amount}
@@ -44,8 +42,8 @@ function Form ({ toggleModal }) {
                 />
             </div>
             <div className="input-control">
-                {/* <h3 className="box-title">Trip</h3> */}
                 <input
+                    className={'input-highlight'}
                     autoComplete="off"
                     type="text"
                     value={trip}
@@ -55,8 +53,8 @@ function Form ({ toggleModal }) {
                 />
             </div>
             <div className="input-control">
-                {/* <h3 className="box-title">Trip</h3> */}
                 <input
+                    className={'input-highlight'}
                     autoComplete="off"
                     type="text"
                     value={startingMi}
@@ -66,8 +64,8 @@ function Form ({ toggleModal }) {
                 />
             </div>
             <div className="input-control">
-                {/* <h3 className="box-title">Trip</h3> */}
                 <input
+                    className={'input-highlight'}
                     autoComplete="off"
                     type="text"
                     value={endingMi}
@@ -77,8 +75,8 @@ function Form ({ toggleModal }) {
                 />
             </div>
             <div className="input-control">
-                {/* <h3 className="box-title">Date</h3> */}
                 <DatePicker
+                    className={'input-highlight'}
                     autoComplete="off"
                     id='date'
                     placeholderText="Enter Trip Date"
@@ -124,7 +122,7 @@ const FormStyled = styled.form`
         background: transparent;
         resize: none;
         &::placeholder{
-            font-size: 17px;
+            font-size: 15px;
             color: #B2B2B2;
         }
     }
@@ -132,6 +130,14 @@ const FormStyled = styled.form`
         input{
             width: 100%;
         }
+    }
+    .input-control input.input-highlight {
+        border: 1px solid #D0D0D0;
+    }
+
+    .input-control input.input-highlight:focus {
+        border-color: blue; /* Change the color or style as you wish */
+        outline: none; /* Remove the default focus outline (optional) */
     }
     select{
         width: 100%;
