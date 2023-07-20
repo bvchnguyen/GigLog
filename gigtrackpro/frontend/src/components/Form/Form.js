@@ -136,8 +136,9 @@ const FormStyled = styled.form`
     }
 
     .input-control input.input-highlight:focus {
-        border-color: blue; /* Change the color or style as you wish */
-        outline: none; /* Remove the default focus outline (optional) */
+        border-color:  #3FC060;
+        box-shadow: 0 0 1px 1px #ABE4BA;
+        outline: none;
     }
     select{
         width: 100%;
