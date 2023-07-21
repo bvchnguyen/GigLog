@@ -5,10 +5,13 @@ import { useGlobalContext } from "../../context/Global";
 import EarningsModal from "../Modal/EarningsModal";
 import EarningsItems from "../EarningsItems/EarningsItems";
 import GeneralInfo from "../GeneralInfo/GeneralInfo";
+import EarningsGoals from "../Goals/Goals";
 
 function RenderItems () {
     
-    const {addEarnings, getEarnings, earnings, deleteEarnings } = useGlobalContext()
+    const {addEarnings, getEarnings, earnings, deleteEarnings, totalEarnings } = useGlobalContext()
+    const goal = 2200; // Set the goal value here
+    const goalDifference = goal - totalEarnings();
 
     useEffect(() =>{
         getEarnings()    
@@ -18,6 +21,9 @@ function RenderItems () {
         <RenderItemsStyled>
             <Innerlayout>
                <div className="earnings-content">
+                <div className="goal-container">
+                <EarningsGoals goal={goal} earnings={goalDifference} />
+                </div>
                     <div className="earnings-container">
                         <div className="earnings-heading">
                             <h3>Recent Trips</h3>  
@@ -46,12 +52,22 @@ function RenderItems () {
 
 const RenderItemsStyled = styled.div`
 
+    .goal-container{
+
+        display: flex;
+        padding: 2rem;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        width: 100%;
+    }
     .earnings-content{
         display: flex;
         justify-content: flex-start;
         flex-direction: column;
         height: 100vh;
-        width: 450px;
+        width: 395px;
     }
     .earnings-container{
         display: flex;

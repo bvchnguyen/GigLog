@@ -49,12 +49,14 @@ function EarningsGoals ({ goal, earnings }) {
             ctx.font = `bolder ${fontHeight}px helvetica`;
             ctx.fillStyle = '#2c2c2c';
             ctx.textAlign = 'center';
-            ctx.fillText(`$${earnings.toFixed(2)}`, width / 2, height / 2 + 10);
+            // ctx.fillText(`$${earnings.toFixed(2)}`, width / 2, height / 2 + 10);
+            ctx.fillText(`$${earnings}`, width / 2, height / 2 + 10);
             ctx.restore();
 
             ctx.font = 'bold 10px roboto'
             ctx.textAlign = 'center';
-            ctx.fillText(`Out of $${goal.toFixed(2)}`, width / 2, height / 2 + top + 35);
+            // ctx.fillText(`Out of $${goal.toFixed(2)}`, width / 2, height / 2 + top + 35);
+            ctx.fillText(`Out of $${goal}`, width / 2, height / 2 + top + 35);
             ctx.restore();
 
             ctx.font = 'bold 17px helvetica'
@@ -73,7 +75,7 @@ function EarningsGoals ({ goal, earnings }) {
             <div className="goals-container">
                 <Doughnut data={data} options={options} plugins={[textStack]}/>
                 {/* <Doughnut data={data} options={options}/> */}
-                <div className="avgstats-content">
+                {/* <div className="avgstats-content">
                     <div className="avgtrip-ratio">
                         <h2>${getAverageTripRatio()}</h2>
                         <div>
@@ -86,7 +88,7 @@ function EarningsGoals ({ goal, earnings }) {
                     <div className="avgtrip-ratio">
                         hello
                     </div>
-                </div>
+                </div> */}
             </div>
                 {/* <span>Earnings: ${earnings}</span>
                 <span>Goal: ${goal}</span> */}
@@ -97,16 +99,18 @@ function EarningsGoals ({ goal, earnings }) {
 
 const EarningsGoalsStyled = styled.div`
     /* background-color: tan; */
-    width: 100%;
+    /* width: 100%; */
     /* height: 40vh;
     padding: 2rem; */
     .goals-container{
+        /* background-color: blue; */
         display: flex;
         flex-direction: row;
-        gap: 5rem;
+        justify-content: center;
+        /* gap: 5rem; */
         width: 100%;
         height: 40vh;
-        padding: 2rem;
+        padding: 3rem;
     }
     .avgstats-content{
         display: flex;

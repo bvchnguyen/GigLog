@@ -53,7 +53,7 @@ function EarningsItems ({
                 <div className="inner-content">
                     <div className="text">
                         <p> {trip} Trips</p>
-                        <p> {dash} { totalDist } </p>
+                        {/* <p> {dash} { totalDist } </p> */}
                         <p> {dash} {formattedDate} </p>
                     </div>
                 </div>
@@ -145,7 +145,7 @@ const EarningsItemsStyled = styled.div`
                 font-weight: 100;
                 display: flex;
                 align-items: center;
-                /* gap: 0.5rem; */
+                gap: 0.5rem;
                 opacity: 0.5;
             }
         }
