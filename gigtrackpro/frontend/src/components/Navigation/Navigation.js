@@ -48,7 +48,7 @@ const NavStyled = styled.nav`
     background: #2c2c2c;
     color: white;
     padding: 2rem 0rem;
-    width: 300px;
+    width: 250px;
     height: 100%;
     gap: 2rem;
 

@@ -13,3 +13,5 @@ export const car = <i class="fa-solid fa-car"></i>
 export const gear = <i class="fa-solid fa-gear"></i>
 export const right = <i class="fa-solid fa-chevron-right"></i>
 export const left = <i class="fa-solid fa-chevron-left"></i>
+export const clock = <i class="fa-solid fa-clock"></i>
+export const gas = <i class="fa-solid fa-gas-pump"></i>
