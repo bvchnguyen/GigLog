@@ -54,13 +54,49 @@ export const GlobalProvider = ({children}) => {
             }
         }
     }
-
     const totalEarnings = () => {
         let totalEarningsAmount = 0;
         earnings.forEach((earning) => {
             totalEarningsAmount += earning.amount
         })
         return totalEarningsAmount.toFixed(2);
+    }
+
+    const getMonthlyEarnings = (thisMonth) => {
+        let monthlyEarning = 0;
+        let dateString = '';
+        earnings.forEach((earning) => {
+            dateString = earning.date;
+            const dateObject = new Date(dateString);
+            const month = dateObject.getMonth();
+            if (month === thisMonth){
+                monthlyEarning += earning.amount
+            }
+        })
+        return monthlyEarning.toFixed(2);
+    }
+
+    const getWeekNumber = (date) => {
+        const weekStart = new Date(date);
+        weekStart.setDate(weekStart.getDate() - (weekStart.getDay() + 6) % 7 + 1);
+        const firstThursday = new Date(weekStart.getFullYear(), 0, 4);
+        const weekNumber = Math.ceil(((weekStart - firstThursday) / 86400000 + 1) / 7);
+        return weekNumber;
+    }
+
+    const getWeeklyEarnings = (thisWeek) => {
+        let weeklyEarning = 0;
+        let dateString = '';
+        earnings.forEach((earning) => {
+            dateString = earning.date;
+            const dateObject = new Date(dateString);
+            const weekNumber = getWeekNumber(dateObject);
+            if (weekNumber === thisWeek){
+                // console.log('adding:', earning.amount)
+                weeklyEarning += earning.amount
+            }
+        })
+        return weeklyEarning.toFixed(2);
     }
 
     const totalTrips = () =>{
@@ -70,6 +106,36 @@ export const GlobalProvider = ({children}) => {
         })
         return totalTripsMade;
     }
+
+    const getMonthlyTrip = (thisMonth) => {
+        let monthyTrips = 0;
+        let dateString = '';
+        earnings.forEach((earning) => {
+            dateString = earning.date;
+            const dateObject = new Date(dateString);
+            const month = dateObject.getMonth();
+            if (month === thisMonth){
+                monthyTrips += earning.trip
+            }
+        })
+        return monthyTrips;
+    }
+
+    const getWeeklyTrips = (thisWeek) => {
+        let weeklyTrips = 0;
+        let dateString = '';
+        earnings.forEach((earning) => {
+            dateString = earning.date;
+            const dateObject = new Date(dateString);
+            const weekNumber = getWeekNumber(dateObject);
+            if (weekNumber === thisWeek){
+                // console.log('adding:', earning.amount)
+                weeklyTrips += earning.trip
+            }
+        })
+        return weeklyTrips;
+    }
+
     const totalDistance = () =>{
         let eachDistance = 0;
         let totalDistance = 0;
@@ -78,6 +144,21 @@ export const GlobalProvider = ({children}) => {
             totalDistance += eachDistance
         })
         return totalDistance;
+    }
+    const getWeeklyDistance = (thisWeek) => {
+        let eachDistance = 0;
+        let weeklyDistance = 0;
+        let dateString = '';
+        earnings.forEach((earning) => {
+            dateString = earning.date;
+            const dateObject = new Date(dateString);
+            const weekNumber = getWeekNumber(dateObject);
+            if (weekNumber === thisWeek){
+                eachDistance = earning.endingMi - earning.startingMi
+                weeklyDistance += eachDistance
+            }
+        })
+        return weeklyDistance;
     }
     const getAverageTripRatio = () => {
         return (totalEarnings() / totalDistance()).toFixed(1);
@@ -90,10 +171,16 @@ export const GlobalProvider = ({children}) => {
             addEarnings,
             getEarnings,
             earnings,
+            getWeekNumber,
             deleteEarnings,
             totalEarnings,
+            getMonthlyEarnings,
+            getWeeklyEarnings,
             totalTrips,
+            getMonthlyTrip,
+            getWeeklyTrips,
             totalDistance,
+            getWeeklyDistance,
             getAverageTripRatio
         }}>
             {children}

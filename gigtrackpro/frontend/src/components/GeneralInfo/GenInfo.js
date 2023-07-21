@@ -5,30 +5,43 @@ import { useGlobalContext } from "../../context/Global";
 import EarningsModal from "../Modal/EarningsModal";
 import EarningsItems from "../EarningsItems/EarningsItems";
 
+function getCurrentDateString() {
+    const currentDate = new Date();
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    return currentDate.toLocaleDateString(undefined, options);
+}
+
+
 function GenInfo () {
     
-    const {totalEarnings, totalTrips, totalDistance} = useGlobalContext()
-    
+
+    const {totalEarnings,
+            totalTrips, 
+            totalDistance, 
+            getMonthlyEarnings, 
+            getWeeklyTrips, 
+            getWeekNumber, 
+            getWeeklyEarnings,
+            getWeeklyDistance} = useGlobalContext()
+
+    const today = getCurrentDateString();
+    const weekNum = getWeekNumber(today);
+    // console.log('today:', today);
+    // console.log('Week Number:', weekNum);
+
     return (
         <GenInfoStyled>
             <div className="GenInfo-container">               
                 <div className="totalEarnings-container">
-                    {/* <div className="totalEarnings-icon">{ cash }</div> */}
-                    <h2>${totalEarnings()}</h2>
-                    {/* <h2>$30000.00</h2> */}
-                    {/* <p>Your 2023</p> */}
+                    <h2>${getWeeklyEarnings(weekNum)}</h2>
                     <p>Net Earnings</p>
                 </div>
                 <div className="totalTrips-container">
-                    {/* <div className="totalTrips-icon">{ car }</div> */}
-                    <h2>{totalTrips()}</h2>
-                    {/* <p>Your 2023</p> */}
+                    <h2>{getWeeklyTrips(weekNum)}</h2>
                     <p>Completed Trips</p>
                 </div>
                 <div className="totalDistance-container">
-                    {/* <div className="totalDistance-icon">{ gear }</div> */}
-                    <h2>{totalDistance()}mi</h2>
-                    {/* <p>2023</p> */}
+                    <h2>{getWeeklyDistance(weekNum)}mi</h2>
                     <p>Mileage Driven</p>
                 </div>
             </div>
