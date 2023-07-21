@@ -79,7 +79,6 @@ function StatsChart() {
         labels: labels,
         datasets: [
         {
-            label: "",
             data: data,
             backgroundColor: '#2c2c2c',
             borderColor: '#2c2c2c',
@@ -94,7 +93,7 @@ function StatsChart() {
         plugins: {
             title: {
                 display: true,
-                text: `${weekTitle} Earnings`,
+                text: `${weekTitle}`,
                 align: 'start',
                 font: {
                     size: 15, // Change the font size to 18px (adjust as needed)
@@ -106,18 +105,24 @@ function StatsChart() {
         },
         maintainAspectRatio: false,
         scales: {
-        x: {
-            title: {
-            display: true,
-            text: 'Date',
+            x: {
+                title: {
+                display: true,
+                text: 'Date',
+                },
             },
-        },
-        y: {
-            title: {
-            display: true,
-            text: 'Earnings',
+            y: {
+                title: {
+                display: true,
+                text: 'Earnings',
+                },
+                ticks: {
+                    // Use a callback function to modify the label values
+                    callback: function (value) {
+                      return '$' + value; // Adding the dollar sign before the value
+                    },
+                },
             },
-        },
         },
     };
 

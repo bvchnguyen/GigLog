@@ -2,18 +2,18 @@ import React, { useEffect } from "react";
 import styled from 'styled-components';
 import { Innerlayout } from "../../styles/Layouts";
 import { useGlobalContext } from "../../context/Global";
-import EarningsModal from "../Modal/EarningsModal";
-import EarningsItems from "../EarningsItems/EarningsItems";
+// import EarningsModal from "../Modal/EarningsModal";
+// import EarningsItems from "../EarningsItems/EarningsItems";
 import GeneralInfo from "../GeneralInfo/GeneralInfo";
 import StatsChart from "../Chart/Chart";
 
 function Dashboard () {
     
-    const {addEarnings, getEarnings, earnings, deleteEarnings } = useGlobalContext()
+    const { getEarnings } = useGlobalContext()
 
     useEffect(() =>{
         getEarnings()    
-    }, [])
+    })
 
     return (
         <DashboardStyled>
