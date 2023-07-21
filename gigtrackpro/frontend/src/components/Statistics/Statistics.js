@@ -6,23 +6,29 @@ import EarningsGoals from "../Goals/Goals";
 import GenInfo from "../GeneralInfo/GenInfo";
 import StatsChart from "../Chart/Chart";
 import IndivInfo from "../GeneralInfo/IndivInfo";
+import Progressbar from "../Chart/ProgressBar";
 
 function Statistics () {
 
     const { totalEarnings, getAverageTripRatio } = useGlobalContext();
     const goal = 2200; // Set the goal value here
     const goalDifference = goal - totalEarnings();
+    const goalAmount = 550; // Set your goal amount here
+    const currentAmount = 200; // Set your current amount here
+    
     return (
         <StatisticsStyled>
             <Innerlayout>
                 {/* <EarningsGoals goal={goal} earnings={goalDifference} /> */}
                 <div className="statistics-content">
                 <GenInfo />
-                <IndivInfo />
+                <Progressbar />
+                {/* <IndivInfo /> */}
                 <div className="chart-container">
                         <StatsChart />
-                    <div className="weekly-stats">
-                    </div>
+                        {/* <div className="in-between"></div> */}
+                        <IndivInfo />
+                        {/* <Progressbar goalAmount={goalAmount} currentAmount={currentAmount} /> */}
                 </div>
                </div>
             </Innerlayout>
@@ -32,43 +38,23 @@ function Statistics () {
 
 const StatisticsStyled = styled.div `
     .statistics-content{
+        display: flex;
+        flex-direction: column;
         width: 100%;
         padding: 2rem;
         padding-top: 0;
-        /* gap: 1rem; */
+        gap: 2rem;
     }
     .chart-container{
+        /* background-color: blue; */
         width: 100%;
         display: flex; 
         flex-direction: row;
         justify-content: flex-start;
-        /* background-color: blue; */
-        height: 50vh;
+        height: 240px;
         align-items: center;
-        /* padding-top: 2rem; */
-        gap: 1rem;
-        /* padding-right: 1rem; */
-        /* margin-right: 10px; */
-        align-items: center;
+        gap: 3rem;
     }
-    /* .avgstats-content{
-        display: flex;
-        flex-direction: column;
-        .avgtrip-ratio{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-around;
-            padding: 1rem;
-            background-color: white;
-            border-radius: 20px;
-            height: 5rem;
-            width: 100%;
-            p{
-                font-size: 10px;
-            }
-        }
-    } */
 `;
 
 export default Statistics;

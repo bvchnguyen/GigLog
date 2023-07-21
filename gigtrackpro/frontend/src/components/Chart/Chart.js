@@ -10,7 +10,7 @@ import {Chart as ChartJs,
     BarElement, 
     Title, 
     Tooltip, 
-    Legend, 
+    // Legend, 
     ArcElement,
 } from 'chart.js';
 
@@ -20,9 +20,15 @@ ChartJs.register(
     BarElement, 
     Title, 
     Tooltip, 
-    Legend, 
+    // Legend, 
     ArcElement
 )
+
+function getDayOfWeek(date) {
+    const daysOfWeek = ["SU", "M", "TU", "W", "TH", "F", "SA"];
+    const dayIndex = date.getDay();
+    return daysOfWeek[dayIndex];
+  }
 
 function StatsChart() {
     const { earnings } = useGlobalContext();
@@ -59,31 +65,45 @@ function StatsChart() {
     const currentDate = new Date(currentWeek.start);
     while (currentDate <= currentWeek.end) {
         const formattedDate = dateFormat(currentDate, 'dd-mm-yyyy');
-        labels.push(formattedDate);
+        const dayOfWeek = getDayOfWeek(currentDate); // Get the day of the week using the function
+        labels.push(dayOfWeek); // Use the day of the week as the label
         data.push(earningsByDate[formattedDate] || 0);
         currentDate.setDate(currentDate.getDate() + 1);
     }
 
+    const formattedWeekStart = dateFormat(currentWeek.start, 'mm/dd');
+    const formattedWeekEnd = dateFormat(currentWeek.end, 'mm/dd');
+    const weekTitle = `${formattedWeekStart} - ${formattedWeekEnd}`;
+    
     const chartData = {
         labels: labels,
         datasets: [
         {
-            label: 'Earnings',
+            label: "",
             data: data,
             backgroundColor: '#2c2c2c',
             borderColor: '#2c2c2c',
-            // borderRadius: 10,
-            // borderWidth: 1,
-            // backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
             borderWidth: 2,
-            borderRadius: Number.MAX_VALUE,
+            borderRadius: 5,
             borderSkipped: false,
-        },
-        ],
+        },],
     };
 
     const options = {
         responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                text: `${weekTitle} Earnings`,
+                align: 'start',
+                font: {
+                    size: 15, // Change the font size to 18px (adjust as needed)
+                },
+                padding: {
+                    bottom: 15, // Change the bottom margin to 10px (adjust as needed)
+                },
+            }
+        },
         maintainAspectRatio: false,
         scales: {
         x: {
@@ -101,10 +121,6 @@ function StatsChart() {
         },
     };
 
-    const formattedWeekStart = dateFormat(currentWeek.start, 'mm/dd');
-    const formattedWeekEnd = dateFormat(currentWeek.end, 'mm/dd');
-    const weekTitle = `${formattedWeekStart} - ${formattedWeekEnd}`;
-
     const handlePreviousWeek = () => {
         if (currentWeekIndex > 0) {
         setCurrentWeekIndex((prevIndex) => prevIndex - 1);
@@ -119,15 +135,15 @@ function StatsChart() {
 
     return (
         <StatsChartstyled>
-        <h2>Weekly Earnings</h2>
+        {/* <h2>Weekly Earnings</h2> */}
         <div className='display-week'>
-            <button onClick={handlePreviousWeek} disabled={currentWeekIndex === 0}>
+            {/* <button onClick={handlePreviousWeek} disabled={currentWeekIndex === 0}>
             {left}
             </button>
             <h3>{weekTitle}</h3>
             <button onClick={handleNextWeek} disabled={currentWeekIndex === sortedWeeks.length - 1}>
             {right}
-            </button>
+            </button> */}
         </div>
         <Bar data={chartData} options={options} />
         </StatsChartstyled>
@@ -136,9 +152,12 @@ function StatsChart() {
 
 
 const StatsChartstyled = styled.div `
-    /* background-color: blue; */
+    padding-top: 0%;
+    background-color: white;
     width: 100%;
-    height: 80%;
+    height: 100%;
+    padding: 1rem;
+    border-radius: 15px;
     .display-week{
         display: flex;
         flex-direction: row;

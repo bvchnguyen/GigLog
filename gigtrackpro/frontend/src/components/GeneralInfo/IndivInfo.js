@@ -63,13 +63,11 @@ function IndivInfo (){
 
 const IndivInfoStyled = styled.div`
     width: 100%;
-    margin-top: 1rem;
-    /* height: 10vh; */
     .avgstats-content{
+        /* background-color: red; */
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         gap: 1rem;
-        /* background-color: #2c2c2c; */
         .indi-content{
             display: flex;
             flex-direction: row;
