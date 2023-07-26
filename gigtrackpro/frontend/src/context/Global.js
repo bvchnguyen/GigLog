@@ -26,7 +26,6 @@ export const GlobalProvider = ({children}) => {
         const weekNumber = Math.ceil(((weekStart - firstThursday) / 86400000 + 1) / 7);
         return weekNumber;
     }
-
     /* Function to add earnings upon logging */ 
     const addEarnings = async (earnings) => {
         try{
@@ -64,6 +63,48 @@ export const GlobalProvider = ({children}) => {
             const response = await axios.delete(`${BASE_URL}delete-earning/${id}`);
             /* Render database after a deletion is done */
             getEarnings();
+        }
+        catch (error){
+            if (error.response) {
+                setError(error.response.data.message);
+            } else {
+                setError("An error occurred while making the delete request.")
+            }
+        }
+    }
+    const addExpense = async (expenses) => {
+        try{
+            const response = await axios.post(`${BASE_URL}add-expense`, expenses)
+            /* Render after adding a trip */
+            getExpense()
+        }
+        catch (error){
+            if (error.response) {
+                setError(error.response.data.message);
+            } else {
+                setError("An error occurred while making the add post.")
+            }   
+        }
+    }
+    const getExpense = async () =>{
+        try {
+            const response = await axios.post(`${BASE_URL}get-expense`)
+            setEarnings(response.data)
+            // console.log(response.data)
+            // Process the response.data here
+        } catch (error) {
+            if (error.response) {
+                setError(error.response.data.message);
+            } else {
+                setError("An error occurred while making the get request.")
+            }
+        }
+    }
+    const deleteExpense = async (id) =>{
+        try{
+            const response = await axios.delete(`${BASE_URL}delete-expense/${id}`);
+            /* Render database after a deletion is done */
+            getExpense();
         }
         catch (error){
             if (error.response) {
@@ -198,6 +239,10 @@ export const GlobalProvider = ({children}) => {
             addEarnings,
             getEarnings,
             earnings,
+            expenses,
+            addExpense,
+            getExpense,
+            deleteExpense,
             getWeekNumber,
             deleteEarnings,
             totalEarnings,
