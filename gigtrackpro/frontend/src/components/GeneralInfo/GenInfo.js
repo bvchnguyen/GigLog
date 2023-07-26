@@ -19,7 +19,7 @@ function GenInfo () {
 
     const today = getCurrentDateString();
     const weekNum = getWeekNumber(today);
-    
+
     return (
         <GenInfoStyled>
             <div className="GenInfo-container">               
@@ -44,7 +44,6 @@ function GenInfo () {
 const GenInfoStyled = styled.div`
 
     width: 100%;
-    /* padding: 1rem; */
     .GenInfo-container{
         border-radius: 20px;
         background-color: #EAEAEA;
@@ -52,22 +51,17 @@ const GenInfoStyled = styled.div`
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        /* gap: 1rem; */
         width: 100%;
-        /* opacity: .5; */
     }
     .totalEarnings-container, .totalTrips-container, .totalDistance-container{
         display: flex;
         flex-direction: column;
         width: 100%;
-        /* background-color: blue; */
         align-items: center;
         h2{
             color: #2c2c2c;
             letter-spacing: 1px;
             font-size: 30px;
-            /* margin-top: 10px;
-            margin-bottom: 20px; */
         }
         p{
             font-size: 14px;

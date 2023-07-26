@@ -2,35 +2,12 @@ import React from "react";
 import styled from 'styled-components'
 import { useGlobalContext } from "../../context/Global";
 import { Innerlayout } from "../../styles/Layouts";
-import EarningsGoals from "../Goals/Goals";
-import GenInfo from "../GeneralInfo/GenInfo";
-import StatsChart from "../Chart/Chart";
-import IndivInfo from "../GeneralInfo/IndivInfo";
-import Progressbar from "../Chart/ProgressBar";
 
 function Statistics () {
 
-    const { totalEarnings, getAverageTripRatio } = useGlobalContext();
-    const goal = 2200; // Set the goal value here
-    const goalDifference = goal - totalEarnings();
-    const goalAmount = 550; // Set your goal amount here
-    const currentAmount = 200; // Set your current amount here
-    
     return (
         <StatisticsStyled>
             <Innerlayout>
-                {/* <EarningsGoals goal={goal} earnings={goalDifference} /> */}
-                <div className="statistics-content">
-                <GenInfo />
-                <Progressbar />
-                {/* <IndivInfo /> */}
-                <div className="chart-container">
-                        <StatsChart />
-                        {/* <div className="in-between"></div> */}
-                        <IndivInfo />
-                        {/* <Progressbar goalAmount={goalAmount} currentAmount={currentAmount} /> */}
-                </div>
-               </div>
             </Innerlayout>
         </StatisticsStyled>
     )
