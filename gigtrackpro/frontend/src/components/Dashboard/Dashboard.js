@@ -1,27 +1,35 @@
-import React, { useEffect } from "react";
-import styled from 'styled-components';
-import { Innerlayout } from "../../styles/Layouts";
+import React from "react";
+import styled from 'styled-components'
 import { useGlobalContext } from "../../context/Global";
-// import EarningsModal from "../Modal/EarningsModal";
-// import EarningsItems from "../EarningsItems/EarningsItems";
-import GeneralInfo from "../GeneralInfo/GeneralInfo";
+import { Innerlayout } from "../../styles/Layouts";
+import EarningsGoals from "../Goals/Goals";
+import GenInfo from "../GeneralInfo/GenInfo";
 import StatsChart from "../Chart/Chart";
+import IndivInfo from "../GeneralInfo/IndivInfo";
+import Progressbar from "../Chart/ProgressBar";
+import { dashboard } from "../../utils/Icons";
 
 function Dashboard () {
-    
-    const { getEarnings } = useGlobalContext()
 
-    useEffect(() =>{
-        getEarnings()    
-    })
+    const { totalEarnings, getAverageTripRatio, getWeekNumber } = useGlobalContext();
+    const goal = 2200; // Set the goal value here
+    const goalDifference = goal - totalEarnings();
+    const goalAmount = 550; // Set your goal amount here
+    const currentAmount = 200; // Set your current amount here
 
     return (
         <DashboardStyled>
             <Innerlayout>
-               <div className="dashboard-content">
-                <GeneralInfo />
+                {/* <EarningsGoals goal={goal} earnings={goalDifference} /> */}
+                <div className="statistics-content">
+                <GenInfo />
+                <Progressbar />
+                {/* <IndivInfo /> */}
                 <div className="chart-container">
-                    <StatsChart />
+                        <StatsChart />
+                        {/* <div className="in-between"></div> */}
+                        <IndivInfo />
+                        {/* <Progressbar goalAmount={goalAmount} currentAmount={currentAmount} /> */}
                 </div>
                </div>
             </Innerlayout>
@@ -29,21 +37,24 @@ function Dashboard () {
     )
 }
 
-const DashboardStyled = styled.div`
-    .dashboard-content{
+const DashboardStyled = styled.div `
+    .statistics-content{
+        display: flex;
+        flex-direction: column;
         width: 100%;
-        padding-left: 2rem;
+        padding: 2rem;
+        padding-top: 0;
+        gap: 2rem;
     }
     .chart-container{
-        display: flex; 
-        flex-direction: column;
-        justify-content: flex-start;
         /* background-color: blue; */
-        height: 50vh;
+        width: 100%;
+        display: flex; 
+        flex-direction: row;
+        justify-content: flex-start;
+        height: 240px;
         align-items: center;
-        padding-top: 2rem;
-        padding-right: 1rem;
-        margin-right: 10px;
+        gap: 3rem;
     }
 `;
 
