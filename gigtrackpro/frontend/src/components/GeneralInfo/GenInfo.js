@@ -5,17 +5,10 @@ import { useGlobalContext } from "../../context/Global";
 import EarningsModal from "../Modal/EarningsModal";
 import EarningsItems from "../EarningsItems/EarningsItems";
 
-function getCurrentDateString() {
-    const currentDate = new Date();
-    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-    return currentDate.toLocaleDateString(undefined, options);
-}
-
-
 function GenInfo () {
     
-
-    const {totalEarnings,
+    const { getCurrentDateString,
+            totalEarnings,
             totalTrips, 
             totalDistance, 
             getMonthlyEarnings, 
@@ -26,9 +19,7 @@ function GenInfo () {
 
     const today = getCurrentDateString();
     const weekNum = getWeekNumber(today);
-    // console.log('today:', today);
-    // console.log('Week Number:', weekNum);
-
+    
     return (
         <GenInfoStyled>
             <div className="GenInfo-container">               
