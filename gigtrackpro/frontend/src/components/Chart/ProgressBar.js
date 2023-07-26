@@ -3,8 +3,13 @@ import styled from 'styled-components';
 
 const Progressbar = ({ goalAmount, currentAmount }) => {
     
-    const progressPercentage = ((currentAmount / goalAmount) * 100).toFixed(2);
 
+    const progressPercentage = () =>{
+        if (goalAmount === 0 || goalAmount === null){
+            return 0;
+        }
+        return ((currentAmount / goalAmount) * 100).toFixed(2);
+    }
     return (
         <ProgressbarStyled>
             <h2 className='name'>Weekly Goal</h2>
@@ -16,11 +21,11 @@ const Progressbar = ({ goalAmount, currentAmount }) => {
             <div className="progress-bar">
             <div
                 className="progress-bar__fill"
-                style={{ width: `${progressPercentage}%` }}
+                style={{ width: `${progressPercentage()}%` }}
             ></div>
         </div>
         <div className="progress-bar__label">
-                {progressPercentage}%
+                {progressPercentage()}%
         </div>
         </ProgressbarStyled>
     )
