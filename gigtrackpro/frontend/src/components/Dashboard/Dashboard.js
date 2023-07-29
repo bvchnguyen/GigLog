@@ -8,29 +8,32 @@ import StatsChart from "../Chart/Chart";
 import IndivInfo from "../GeneralInfo/IndivInfo";
 import Progressbar from "../Chart/ProgressBar";
 import { dashboard } from "../../utils/Icons";
+import WeeklyStats from "../GeneralInfo/WeeklyStats";
 
 function Dashboard () {
 
-    const { totalEarnings, getAverageTripRatio, getWeekNumber } = useGlobalContext();
-    const goal = 2200; // Set the goal value here
-    const goalDifference = goal - totalEarnings();
-    const goalAmount = 550; // Set your goal amount here
-    const currentAmount = 200; // Set your current amount here
+    const { getCurrentDateString, totalEarnings, getAverageTripRatio, getWeekNumber, getWeeklyEarnings } = useGlobalContext();
+    const goalAmount = 550; /* Temp goalAmount, will replace with custom input */ 
+    const today = getCurrentDateString();
+    const currentWeek = getWeekNumber(today);
+    const currentAmount = getWeeklyEarnings(currentWeek);
+
+    console.log('current amount: ', currentAmount)
 
     return (
         <DashboardStyled>
             <Innerlayout>
-                {/* <EarningsGoals goal={goal} earnings={goalDifference} /> */}
-                <div className="statistics-content">
-                <GenInfo />
-                <Progressbar />
-                {/* <IndivInfo /> */}
-                <div className="chart-container">
-                        <StatsChart />
-                        {/* <div className="in-between"></div> */}
-                        <IndivInfo />
-                        {/* <Progressbar goalAmount={goalAmount} currentAmount={currentAmount} /> */}
+                <div className="title">
+                    <h3>Weekly Overview</h3>
                 </div>
+                <div className="statistics-content">
+                {/* <GenInfo /> */}
+                {/* <Progressbar goalAmount={goalAmount} currentAmount={currentAmount} /> */}
+                <div className="chart-container">
+                    <StatsChart />
+                    <WeeklyStats />
+                </div>
+                <Progressbar goalAmount={goalAmount} currentAmount={currentAmount} />
                </div>
             </Innerlayout>
         </DashboardStyled>
@@ -38,6 +41,13 @@ function Dashboard () {
 }
 
 const DashboardStyled = styled.div `
+    .title{
+        padding: 2rem;
+        h3{
+            font-size: 25px;
+        }
+        padding-bottom: 2%;
+    }
     .statistics-content{
         display: flex;
         flex-direction: column;
@@ -48,13 +58,15 @@ const DashboardStyled = styled.div `
     }
     .chart-container{
         /* background-color: blue; */
+        border-radius: 10px;
+        background-color: white;
         width: 100%;
         display: flex; 
         flex-direction: row;
         justify-content: flex-start;
-        height: 240px;
+        height: 300px;
         align-items: center;
-        gap: 3rem;
+        gap: 2rem;
     }
 `;
 

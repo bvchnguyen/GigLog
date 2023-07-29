@@ -7,7 +7,13 @@ import EarningsItems from "../EarningsItems/EarningsItems";
 
 function IndivInfo (){
 
-    const { getCurrentDateString, getWeekNumber, totalEarnings, getAverageTripRatio, getWeeklyAverageTripRatio } = useGlobalContext();
+    const { getCurrentDateString, 
+            getWeekNumber, 
+            totalEarnings, 
+            getAverageTripRatio, 
+            getWeeklyAverageTripRatio,
+            getTotalExpense,
+            getTotalFuel } = useGlobalContext();
 
     const today = getCurrentDateString();
     const weekNum = getWeekNumber(today);
@@ -22,7 +28,6 @@ function IndivInfo (){
                 <div className="inner-content">
                     <div className="text">
                         <p>Dollars per mi</p>
-                        {/* <h2>${getAverageTripRatio()}</h2> */}
                         <h2>${getWeeklyAverageTripRatio(weekNum)}</h2>
                     </div>
                 </div>
@@ -51,7 +56,8 @@ function IndivInfo (){
                 <div className="inner-content">
                     <div className="text">
                         <p>Fuel</p>
-                        <h2>$92.68</h2>
+                        {/* <h2>${getTotalFuel()}</h2> */}
+                        <h2>${getTotalExpense()}</h2>
                     </div>
                 </div>
                 <div className="fuel-rating">

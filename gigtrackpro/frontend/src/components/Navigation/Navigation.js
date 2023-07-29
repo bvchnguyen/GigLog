@@ -4,7 +4,7 @@ import  avatar from '../../img/avatar.jpg'
 import { menuItems } from '../../utils/MenuItems'
 import { signout } from '../../utils/Icons' 
 import EarningsModal from '../Modal/EarningsModal'
-
+import ExpenseModal from '../Modal/ExpenseModal'
 
 function Navigation ({active, setActive}){
     return (
@@ -14,7 +14,11 @@ function Navigation ({active, setActive}){
                 <div className='text'>
                     <h2>Bach Nguyen</h2>
                     <h4>Delivering Since 2020</h4>
-                    <EarningsModal />
+                    <div className='log-btns'>
+                        <EarningsModal />
+                        <ExpenseModal />
+                    </div>
+
                 </div>
             </div>
             <ul className='menu-items'>
@@ -48,10 +52,15 @@ const NavStyled = styled.nav`
     background: #2c2c2c;
     color: white;
     padding: 2rem 0rem;
-    width: 250px;
+    width: 240px;
     height: 100%;
     gap: 2rem;
 
+    .log-btns{
+        display: flex;
+        flex-direction: column;
+        /* padding: 2rem;  */
+    }
     .user-container{
         position: relative;
         height: 100px;
@@ -86,8 +95,8 @@ const NavStyled = styled.nav`
         align-items: center;    
     }
     .menu-items{
-        padding-top: 5rem;
-        flex: 1;
+        /* padding-top: 1rem; */
+        /* flex: 2; */
         display: flex;
         flex-direction: column;
         font-style: normal;
