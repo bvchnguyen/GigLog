@@ -20,11 +20,9 @@ function ExpenseForm ({ toggleModal }) {
 
     const handleSubmit = e => {
         e.preventDefault()
-        // addEarnings(inputState)
         addExpense(inputState)
         getExpense()
         toggleModal()
-        // getEarnings()
     }
     return (
         <ExpenseFormStyled onSubmit={handleSubmit}>
