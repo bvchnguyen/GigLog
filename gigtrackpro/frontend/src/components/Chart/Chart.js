@@ -25,7 +25,7 @@ ChartJs.register(
 )
 
 function getDayOfWeek(date) {
-    const daysOfWeek = ["SU", "M", "TU", "W", "TH", "F", "SA"];
+    const daysOfWeek = ["SUN", "MON", "TUES", "WED", "THURS", "FRI", "SAT"];
     const dayIndex = date.getDay();
     return daysOfWeek[dayIndex];
   }
@@ -107,14 +107,19 @@ function StatsChart() {
         scales: {
             x: {
                 title: {
-                display: true,
-                text: 'Date',
+                    display: true,
+                    text: 'Date',
+                },
+                ticks: {
+                    font: {
+                        size: 8, // Adjust this value to change the font size for x-axis labels
+                    },
                 },
             },
             y: {
                 title: {
-                display: true,
-                text: 'Earnings',
+                    display: true,
+                    text: 'Earnings',
                 },
                 ticks: {
                     // Use a callback function to modify the label values

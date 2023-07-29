@@ -8,7 +8,7 @@ const GlobalContext = React.createContext()
 export const GlobalProvider = ({children}) => {
     
     const [earnings, setEarnings] = useState([])
-    const [expenses, setExpenses] = useState([])
+    const [expense, setExpense] = useState([])
     const [error, setError] = useState([null])
     
     /* Function to get the current date as a string */ 
@@ -72,9 +72,9 @@ export const GlobalProvider = ({children}) => {
             }
         }
     }
-    const addExpense = async (expenses) => {
+    const addExpense = async (expense) => {
         try{
-            const response = await axios.post(`${BASE_URL}add-expense`, expenses)
+            const response = await axios.post(`${BASE_URL}add-expense`, expense)
             /* Render after adding a trip */
             getExpense()
         }
@@ -89,8 +89,7 @@ export const GlobalProvider = ({children}) => {
     const getExpense = async () =>{
         try {
             const response = await axios.post(`${BASE_URL}get-expense`)
-            setEarnings(response.data)
-            // console.log(response.data)
+            setExpense(response.data)
             // Process the response.data here
         } catch (error) {
             if (error.response) {
@@ -104,7 +103,7 @@ export const GlobalProvider = ({children}) => {
         try{
             const response = await axios.delete(`${BASE_URL}delete-expense/${id}`);
             /* Render database after a deletion is done */
-            getExpense();
+            getExpense()
         }
         catch (error){
             if (error.response) {
@@ -232,14 +231,32 @@ export const GlobalProvider = ({children}) => {
         }
      return (getWeeklyEarnings(thisWeek) / getWeeklyDistance(thisWeek)).toFixed(1);
     }
+    const getTotalExpense = () => {
+        let totalExpense = 0;
+        expense.forEach((exp) => {
+            totalExpense += exp.amount
+        })
+        console.log('Total Expense:', totalExpense);
+        return totalExpense.toFixed(2);
+    }
 
+    const getTotalFuel = () =>{
+        let totalFuel = 0;
+        expense.forEach((exp) => {
+            if (exp.category === 'fuel')
+            totalFuel += exp.amount
+        })
+        console.log('Total Fuel:', totalFuel);
+        return totalFuel.toFixed(2);
+    }
+    console.log('expense:', expense)
     return (
         <GlobalContext.Provider value ={{
             getCurrentDateString,
             addEarnings,
             getEarnings,
             earnings,
-            expenses,
+            expense,
             addExpense,
             getExpense,
             deleteExpense,
@@ -254,7 +271,9 @@ export const GlobalProvider = ({children}) => {
             totalDistance,
             getWeeklyDistance,
             getAverageTripRatio,
-            getWeeklyAverageTripRatio
+            getWeeklyAverageTripRatio,
+            getTotalExpense,
+            getTotalFuel,
         }}>
             {children}
         </GlobalContext.Provider>
