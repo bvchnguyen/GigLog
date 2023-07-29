@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Form from "../Form/Form";
 import styled from 'styled-components';
+import { x } from '../../utils/Icons';
 
 function EarningsModal (){
     const [modal, setModal] = useState(false);
@@ -31,7 +32,7 @@ function EarningsModal (){
                         <button 
                             className="close-modal" 
                             onClick={toggleModal}
-                        >X
+                        >{ x }
                         </button>
                     </div>
                 </div>
