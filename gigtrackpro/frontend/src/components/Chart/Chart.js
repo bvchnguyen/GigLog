@@ -80,8 +80,8 @@ function StatsChart() {
         datasets: [
         {
             data: data,
-            backgroundColor: '#2c2c2c',
-            borderColor: '#2c2c2c',
+            backgroundColor: '#3FC060',
+            borderColor: '#3FC060',
             borderWidth: 2,
             borderRadius: 5,
             borderSkipped: false,
@@ -112,7 +112,7 @@ function StatsChart() {
                 },
                 ticks: {
                     font: {
-                        size: 8, // Adjust this value to change the font size for x-axis labels
+                        size: 12, // Adjust this value to change the font size for x-axis labels
                     },
                 },
             },
@@ -145,17 +145,7 @@ function StatsChart() {
 
     return (
         <StatsChartstyled>
-        {/* <h2>Weekly Earnings</h2> */}
-        <div className='display-week'>
-            {/* <button onClick={handlePreviousWeek} disabled={currentWeekIndex === 0}>
-            {left}
-            </button>
-            <h3>{weekTitle}</h3>
-            <button onClick={handleNextWeek} disabled={currentWeekIndex === sortedWeeks.length - 1}>
-            {right}
-            </button> */}
-        </div>
-        <Bar data={chartData} options={options} />
+            <Bar data={chartData} options={options} />
         </StatsChartstyled>
     );
 }
@@ -168,6 +158,7 @@ const StatsChartstyled = styled.div `
     height: 100%;
     padding: 1rem;
     border-radius: 15px;
+    border: solid 2px #e2e2e2;
     .display-week{
         display: flex;
         flex-direction: row;

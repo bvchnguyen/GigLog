@@ -16,3 +16,4 @@ export const left = <i class="fa-solid fa-chevron-left"></i>
 export const clock = <i class="fa-solid fa-clock"></i>
 export const gas = <i class="fa-solid fa-gas-pump"></i>
 export const x = <i class="fa-solid fa-x"></i>
+export const pen = <i class="fa-solid fa-pen"></i>

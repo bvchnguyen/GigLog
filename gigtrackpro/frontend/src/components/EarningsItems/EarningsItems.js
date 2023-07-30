@@ -19,7 +19,7 @@ function EarningsItems ({
     deleteItem
     }) {
 
-    const formattedDate = moment(date).format('MM-DD-YYYY');
+    const formattedDate = moment(date).format('MMMM DD, YYYY');
 
     const categoryIcon = () => {
         switch (category) {
@@ -44,22 +44,17 @@ function EarningsItems ({
                 {categoryIcon()}
             </div>
             <div className="content">
-                <div className="cat-container">
                 <h4>{category}</h4>
-                <div className="btn-con">
-                    <button onClick={() => {deleteItem(id)} }>{ trashDel }</button>
                 </div>
-                </div>
-                <div className="inner-content">
                     <div className="text">
                         <p> {trip} Trips</p>
-                        {/* <p> {dash} { totalDist } </p> */}
                         <p> {dash} {formattedDate} </p>
                     </div>
-                </div>
-            </div>
             <div className="amount-con">
                 <h3> ${amount}</h3>
+            </div>
+            <div className="btn-con">
+                    <button onClick={() => {deleteItem(id)} }>{ trashDel }</button>
             </div>
         </EarningsItemsStyled>
     )
@@ -68,11 +63,10 @@ function EarningsItems ({
 const EarningsItemsStyled = styled.div`
     display: flex;
     flex-direction: row;
-    background: #f8f7f0;
+    background: white;
     border: none;
     border-radius: 20px;
     padding: 1rem;
-    margin-bottom: 1rem;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
@@ -88,9 +82,9 @@ const EarningsItemsStyled = styled.div`
         }
     }
     .icon{
-        width: 100px;
+        width: 60px;
         padding: .2rem;
-        height: 60px;
+        height: 40px;
         border-radius: 15px; 
         background: white;
         display: flex;
@@ -102,13 +96,15 @@ const EarningsItemsStyled = styled.div`
             
             width: 100%;
             height: 100%;
+            border-radius: 50%;
             object-fit: contain;
         }
     }
     .content{
         display: flex;
-        flex-direction: column;
-        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 50%;
         gap: .5rem;
         h4{
             color: #2c2c2c;
@@ -117,37 +113,29 @@ const EarningsItemsStyled = styled.div`
             margin-right: 6px;
         }
     }
-    .cat-container{
-        display: flex;
-        flex-direction: row;
-        button{
-            cursor: pointer;
-            border: none;
-            background-color: #f8f7f0;
-            color: #bfbfbf;
-        }
-        button:hover{
-            color: #2c2c2c;
-        }
+    button{
+        cursor: pointer;
+        border: none;
+        background-color: #f8f7f0;
+        color: #bfbfbf;
     }
-    .inner-content{
+    button:hover{
+        color: #2c2c2c;
+    }
+    .text{
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        .text{
+        gap: .5rem;
+        width: 100%;
+        p{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: .9rem;
+            font-weight: 100;
             display: flex;
-            justify-content: flex-start;
             align-items: center;
-            gap: .5rem;
-            p{
-                font-family: Arial, Helvetica, sans-serif;
-                font-size: .7rem;
-                font-weight: 100;
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                opacity: 0.5;
-            }
+            gap: 0.5rem;
+            opacity: 0.5;
         }
     }
     .amount-con{

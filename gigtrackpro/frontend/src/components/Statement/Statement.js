@@ -18,8 +18,6 @@ function Statement () {
 
 const StatementStyled = styled.div `
 
-padding: 2rem;
-
 `;
 
 export default Statement;

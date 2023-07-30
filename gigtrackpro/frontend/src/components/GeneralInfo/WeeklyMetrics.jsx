@@ -52,23 +52,13 @@ function WeeklyStats (){
 
     return (
         <WeeklyStatsStyled>
-        <div className="avgstats-content">
+            <h2 className='metrics-title'>Metrics</h2>
+            <div className="avgstats-content">
             <div className="indi-content" style={{ border: `2px solid ${checkBorderColor(earningStats, earningCondition)}`}}>
                 <div className="inner-content">
                     <div className="text">
-                        <p>Income</p>
-                        <h2>${getWeeklyEarnings(weekNum)}</h2>
-                    </div>
-                    <div className="miles-rating">
-                        {/* <h6>Good</h6> */}
-                    </div>
-                </div>
-            </div>
-            <div className="indi-content">
-                <div className="inner-content">
-                    <div className="text">
-                        <p className="box-label">Trips</p>
-                        <h2>{getWeeklyTrips(weekNum)}</h2>
+                        <p>Dollars / trip</p>
+                        <h2>${(getWeeklyEarnings(weekNum) / getWeeklyTrips(weekNum)).toFixed(2)}</h2>
                     </div>
                     <div className="miles-rating">
                         <h6>Good</h6>
@@ -80,6 +70,17 @@ function WeeklyStats (){
                     <div className="text">
                         <p className="box-label">Dollars / mi</p>
                         <h2>${stats}</h2>
+                    </div>
+                    <div className="miles-rating">
+                        <h6>Good</h6>
+                    </div>
+                </div>
+            </div>
+            <div className="indi-content" style={{ border: `2px solid ${checkBorderColor(stats, condition)}`}}>
+                <div className="inner-content">
+                    <div className="text">
+                        <p className="box-label">Daily Avg</p>
+                        <h2>$75</h2>
                     </div>
                     <div className="miles-rating">
                         <h6>Good</h6>
@@ -104,10 +105,23 @@ function WeeklyStats (){
 }
 const WeeklyStatsStyled = styled.div`
     width: 100%;
+    border-radius: 15px;
+    border: solid 2px #e2e2e2;
+    .metrics-title{
+        padding: 1rem;
+        padding-bottom: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 200;
+        font-size: 17px;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+    }
     .avgstats-content{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 1rem;
         gap: 1rem;
         .indi-content{
             display: flex;
@@ -116,12 +130,13 @@ const WeeklyStatsStyled = styled.div`
             padding: 1rem;
             border-radius: 5px;
             height: 100px;
-            width: 40%;
+            width: 22%;
             gap: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             .inner-content{
                 display: flex;
                 flex-direction: column;
+                gap: .5rem;
                 .text{
                     width: 100%;
                     margin-right: 30px;
@@ -141,7 +156,6 @@ const WeeklyStatsStyled = styled.div`
                 align-items: center;
                 justify-content: center;
                 border-radius: 5px;
-                /* background-color: #3FC060; */
                 padding: 2px;
                 h6{
                     color: #3FC060;

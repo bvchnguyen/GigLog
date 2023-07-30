@@ -58,7 +58,6 @@ const EarningsModalStyled = styled.nav`
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        margin-top: 10px;
         background-color: #3FC060;
         color: white;
         cursor: pointer;
@@ -66,12 +65,12 @@ const EarningsModalStyled = styled.nav`
         text-align: center;
         border: none;
         height: 30px;
-        width: 120px;
+        width: 100px;
         border-radius: 7px;
         letter-spacing: 2px;
         h3{
             margin-left: 5px;
-            font-size: 15px;
+            font-size: 12px;
             font-weight: 100;
         } 
     }

@@ -54,14 +54,14 @@ function App() {
         <Mainlayout>
             <Navigation active={ active } setActive={ setActive }/>
             <main>
-                <div className='hellotest'>
+                {/* <div className='hellotest'>
                     {displayNavSelect()}
-                </div>
+                </div> */}
                 <div>
                     {displayData()}
                 </div>
             </main>
-            <RenderItems />
+            {/* <RenderItems /> */}
         </Mainlayout>
     </AppStyled>
   );
@@ -86,7 +86,7 @@ const AppStyled = styled.div`
         height: 100vh;
         width: 100%;
         /* background-color: white; */
-        background-color: white;
+        background-color: #101214;
         /* border-radius: 20px; */
         overflow: hidden;
         overflow-x: hidden;
