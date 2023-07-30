@@ -7,29 +7,42 @@ import EarningsItems from "../EarningsItems/EarningsItems";
 
 function GeneralInfo () {
     
-    const {totalEarnings, totalTrips, totalDistance} = useGlobalContext()
+    const { getCurrentDateString,
+        totalEarnings,
+        totalTrips, 
+        totalDistance, 
+        getMonthlyEarnings, 
+        getWeeklyTrips, 
+        getWeekNumber, 
+        getWeeklyEarnings,
+        getWeeklyDistance} = useGlobalContext();
+    
+    const currentDate = getCurrentDateString();
+    const weekNum = getWeekNumber(currentDate);
+    
     
     return (
         <GeneralInfoStyled>
             <div className="GeneralInfo-container">               
                 <div className="totalEarnings-container">
-                    <div className="totalEarnings-icon">{ cash }</div>
-                    <h2>${totalEarnings()}</h2>
-                    {/* <h2>$30000.00</h2> */}
-                    <p>Your 2023</p>
-                    <p>Net Earnings</p>
+                    <p>Earnings</p>
+                    <h2>${getWeeklyEarnings(weekNum)}</h2>
                 </div>
                 <div className="totalTrips-container">
-                    <div className="totalTrips-icon">{ car }</div>
-                    <h2>{totalTrips()}</h2>
-                    <p>Your 2023</p>
                     <p>Completed Trips</p>
+                    <h2>{getWeeklyTrips(weekNum)}</h2>
                 </div>
                 <div className="totalDistance-container">
-                    <div className="totalDistance-icon">{ gear }</div>
-                    <h2>{totalDistance()}mi</h2>
-                    <p>2023</p>
                     <p>Mileage Driven</p>
+                    <h2>{getWeeklyDistance(weekNum)}mi</h2>
+                </div>
+                <div className="totalDistance-container">
+                    <p>Compensation</p>
+                    <h2>${(getWeeklyDistance(weekNum) * 0.655).toFixed(2)}</h2>
+                </div>
+                <div className="totalDistance-container">
+                    <p>Fuel Spent</p>
+                    <h2>${41.35}</h2>
                 </div>
             </div>
 
@@ -38,22 +51,24 @@ function GeneralInfo () {
 }
 
 const GeneralInfoStyled = styled.div`
+    width: 100%;
     color: #2c2c2c;
     font-family: Arial, Helvetica, sans-serif;
     .GeneralInfo-container{
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
+        justify-content: space-between;
         gap: 1rem;
     }
     .totalEarnings-container, .totalTrips-container, .totalDistance-container {
         display: flex;
         flex-direction: column;
-        width: 180px;
-        height: 170px;
-        padding: 1.5rem;
-        border-radius: 35px;
-        background-color: #76c486;
+        width: 200px;
+        height: 120px;
+        padding: 1rem;
+        border-radius: 15px;
+        border: solid 2px #e2e2e2;
+        background-color: white;
         h2{
             letter-spacing: 1px;
             font-size: 30px;
@@ -66,9 +81,6 @@ const GeneralInfoStyled = styled.div`
         p{
             font-size: 14px;
         }
-    }
-    .totalTrips-container{
-
     }
 `;
 

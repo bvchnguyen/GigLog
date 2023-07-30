@@ -42,7 +42,6 @@ function GenInfo () {
 }
 
 const GenInfoStyled = styled.div`
-
     width: 100%;
     .GenInfo-container{
         border-radius: 20px;

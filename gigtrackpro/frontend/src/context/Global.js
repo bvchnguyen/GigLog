@@ -8,7 +8,7 @@ const GlobalContext = React.createContext()
 export const GlobalProvider = ({children}) => {
     
     const [earnings, setEarnings] = useState([])
-    const [expenses, setExpenses] = useState([])
+    const [expense, setExpense] = useState([])
     const [error, setError] = useState([null])
     
     /* Function to get the current date as a string */ 
@@ -26,7 +26,6 @@ export const GlobalProvider = ({children}) => {
         const weekNumber = Math.ceil(((weekStart - firstThursday) / 86400000 + 1) / 7);
         return weekNumber;
     }
-
     /* Function to add earnings upon logging */ 
     const addEarnings = async (earnings) => {
         try{
@@ -64,6 +63,47 @@ export const GlobalProvider = ({children}) => {
             const response = await axios.delete(`${BASE_URL}delete-earning/${id}`);
             /* Render database after a deletion is done */
             getEarnings();
+        }
+        catch (error){
+            if (error.response) {
+                setError(error.response.data.message);
+            } else {
+                setError("An error occurred while making the delete request.")
+            }
+        }
+    }
+    const addExpense = async (expense) => {
+        try{
+            const response = await axios.post(`${BASE_URL}add-expense`, expense)
+            /* Render after adding a trip */
+            getExpense()
+        }
+        catch (error){
+            if (error.response) {
+                setError(error.response.data.message);
+            } else {
+                setError("An error occurred while making the add post.")
+            }   
+        }
+    }
+    const getExpense = async () =>{
+        try {
+            const response = await axios.post(`${BASE_URL}get-expense`)
+            setExpense(response.data)
+            // Process the response.data here
+        } catch (error) {
+            if (error.response) {
+                setError(error.response.data.message);
+            } else {
+                setError("An error occurred while making the get request.")
+            }
+        }
+    }
+    const deleteExpense = async (id) =>{
+        try{
+            const response = await axios.delete(`${BASE_URL}delete-expense/${id}`);
+            /* Render database after a deletion is done */
+            getExpense()
         }
         catch (error){
             if (error.response) {
@@ -191,13 +231,35 @@ export const GlobalProvider = ({children}) => {
         }
      return (getWeeklyEarnings(thisWeek) / getWeeklyDistance(thisWeek)).toFixed(1);
     }
+    const getTotalExpense = () => {
+        let totalExpense = 0;
+        expense.forEach((exp) => {
+            totalExpense += exp.amount
+        })
+        console.log('Total Expense:', totalExpense);
+        return totalExpense.toFixed(2);
+    }
 
+    const getTotalFuel = () =>{
+        let totalFuel = 0;
+        expense.forEach((exp) => {
+            if (exp.category === 'fuel')
+            totalFuel += exp.amount
+        })
+        console.log('Total Fuel:', totalFuel);
+        return totalFuel.toFixed(2);
+    }
+    console.log('expense:', expense)
     return (
         <GlobalContext.Provider value ={{
             getCurrentDateString,
             addEarnings,
             getEarnings,
             earnings,
+            expense,
+            addExpense,
+            getExpense,
+            deleteExpense,
             getWeekNumber,
             deleteEarnings,
             totalEarnings,
@@ -209,7 +271,9 @@ export const GlobalProvider = ({children}) => {
             totalDistance,
             getWeeklyDistance,
             getAverageTripRatio,
-            getWeeklyAverageTripRatio
+            getWeeklyAverageTripRatio,
+            getTotalExpense,
+            getTotalFuel,
         }}>
             {children}
         </GlobalContext.Provider>

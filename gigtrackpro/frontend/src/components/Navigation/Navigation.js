@@ -1,23 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
 import  avatar from '../../img/avatar.jpg'
-import { menuItems } from '../../utils/MenuItems'
+import { menuItems, settingItems } from '../../utils/MenuItems'
 import { signout } from '../../utils/Icons' 
 import EarningsModal from '../Modal/EarningsModal'
-
+import ExpenseModal from '../Modal/ExpenseModal'
 
 function Navigation ({active, setActive}){
     return (
         <NavStyled>
-            <div className='user-container'>
+            <div className='logo-container'>
                 <img  src={avatar} alt ="Avatar"/>
-                <div className='text'>
-                    <h2>Bach Nguyen</h2>
-                    <h4>Delivering Since 2020</h4>
-                    <EarningsModal />
-                </div>
+                <h2>GigTrackPro</h2>
             </div>
+            <div className='log-btns'>
+                        <EarningsModal />
+                        <ExpenseModal />
+                    </div>
             <ul className='menu-items'>
+                <h2>MAIN MENU</h2>
                 {menuItems.map((item) => {
                     return <li 
                         key = {item.id}
@@ -31,10 +32,23 @@ function Navigation ({active, setActive}){
                     </li>
                 })}
             </ul>
+            <ul className='menu-items'>
+                <h2>SETTING</h2>
+                {settingItems.map((item) => {
+                    return <li 
+                        key = {item.id}
+                        // Set item ID upon click
+                        onClick={() => setActive(item.id)}
+                        // If active Matches item ID, then className is active, otherwise nothing
+                        className={active === item.id ? 'active': ''}
+                    >
+                        {item.icon}
+                        <span>{item.title}</span>
+                    </li>
+                })}
+            </ul>
             <div className='bottom-nav'>
-                <li>
-                {signout} Signout
-                </li>
+
             </div>
         </NavStyled>
     )
@@ -44,69 +58,68 @@ const NavStyled = styled.nav`
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    background: #2c2c2c;
+    justify-content: flex-start;
+    background: #101214;
     color: white;
-    padding: 2rem 0rem;
-    width: 250px;
+    padding: 1rem 1rem;
+    width: 240px;
     height: 100%;
     gap: 2rem;
 
-    .user-container{
-        position: relative;
-        height: 100px;
+    .log-btns{
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: center;
+        gap: .5rem;
+        /* padding: 2rem;  */
+    }
+    .logo-container{
+        /* position: relative; */
+        /* height: 100px; */
+        display: flex;
+        flex-direction: row;
         align-items: center;
-        gap: 1rem;
+        gap: .5rem;
         img {
-            width: 90px;
-            height: 90px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid white;
-            
+            /* border: 2px solid white; */   
         }
         h2{
             font-weight: 100;
-            font-size: 20px;
+            font-size: 15px;
             margin-bottom: .5rem;
         }
-        h4{
-            font-size: 15px;
-            font-weight: 100;
-            color: #D0D0D0;
-            margin-bottom: 7px;
-        }
-    }
-    .text{
-        font-family: 'helvetica';
-        display: flex;
-        flex-direction: column;
-        align-items: center;    
     }
     .menu-items{
-        padding-top: 5rem;
-        flex: 1;
         display: flex;
         flex-direction: column;
         font-style: normal;
         font-family: 'helvetica';
         letter-spacing: 2px;
+        h2{
+            padding: 0rem 1rem;
+            font-size: 12px;
+            font-weight: 100;
+        }
         span{
-            font-size: 14px;
+            font-size: 12px;
         }
         li{
-            height: 5vh;
+            height: 4vh;
             display: grid;
             grid-template-columns: 30px auto;
             align-items: center;
-            margin: .5rem 0;
+            margin: .4rem 0;
             font-weight: 500;
             cursor: pointer;
             transition: all .4s ease-in-out;
-            padding-left: 2rem;
+            padding-left: 1rem;
             position: relative;
+            border-radius: 20px;
+            font-size: 15px;
         }
         li:hover{
             color: white;
@@ -119,7 +132,7 @@ const NavStyled = styled.nav`
             font-style: italic;
         }   
     }
-    .active{
+    /* .active{
         &::before{
             content: "";
             position: absolute;
@@ -131,7 +144,7 @@ const NavStyled = styled.nav`
             border-radius: 0 10px 10px 0;
             font-style: italic;
         }
-    }
+    } */
 `;
 
 export default Navigation;

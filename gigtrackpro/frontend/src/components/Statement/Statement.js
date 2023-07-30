@@ -15,9 +15,8 @@ function Statement () {
     )
 }
 
-const StatementStyled = styled.div `
 
-padding: 2rem;
+const StatementStyled = styled.div `
 
 `;
 

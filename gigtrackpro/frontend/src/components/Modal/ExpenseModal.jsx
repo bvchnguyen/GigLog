@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Form from "../Form/Form";
+import ExpenseForm from "../Form/ExpenseForm"
 import styled from 'styled-components';
-import { x } from '../../utils/Icons';
 
-function EarningsModal (){
+function ExpenseModal (){
     const [modal, setModal] = useState(false);
     
     const toggleModal = () => {
@@ -19,29 +19,29 @@ function EarningsModal (){
     }, [modal]);
 
     return (
-        <EarningsModalStyled>
+        <ExpenseModalStyled>
             <button onClick={toggleModal} className="btn-modal">
-                <h3>Log trip</h3>
+                <h3>Log Expense</h3>
             </button>
             {modal && (
                 <div className="modal">
                     <div className="overlay" onClick={toggleModal}></div>
                     <div className="modal-content">
-                        <h1 className="modal-heading">Log Earnings</h1>
-                        <Form toggleModal={toggleModal}/>
+                        <h1 className="modal-heading">Log Expense</h1>
+                        <ExpenseForm toggleModal= {toggleModal} />
                         <button 
                             className="close-modal" 
                             onClick={toggleModal}
-                        >{ x }
+                        >X
                         </button>
                     </div>
                 </div>
             )}
-        </EarningsModalStyled>
+        </ExpenseModalStyled>
     )
 }
 
-const EarningsModalStyled = styled.nav`
+const ExpenseModalStyled = styled.nav`
 
     .modal-heading {
         color: #2c2c2c;
@@ -117,4 +117,4 @@ const EarningsModalStyled = styled.nav`
     }
 `;
 
-export default EarningsModal;
+export default ExpenseModal;
