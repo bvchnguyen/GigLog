@@ -87,11 +87,11 @@ function WeeklyStats (){
                     </div>
                 </div>
             </div>
-            <div className="indi-content">
+            <div className="indi-content" style={{ border: `2px solid ${checkBorderColor(stats, condition)}`}}>
                 <div className="inner-content">
                     <div className="text">
-                        <p className="box-label">Distance</p>
-                        <h2>{getWeeklyDistance(weekNum)}mi</h2>
+                        <p className="box-label">Trips / Day</p>
+                        <h2>7.4</h2>
                     </div>
                     <div className="miles-rating">
                         <h6>Good</h6>
