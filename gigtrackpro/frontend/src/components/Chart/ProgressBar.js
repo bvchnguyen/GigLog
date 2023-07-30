@@ -44,8 +44,9 @@ const Progressbar = ({ goalAmount, currentAmount }) => {
         <ProgressbarStyled>
             <h2 className='name'>Weekly Goal</h2>
             <div className="currentToGoal">
-                <h3 className="goal-amount"> ${currentAmount} / ${goalAmount}</h3>
                 <h3 className="percentage">{progressPercentage()}%</h3>
+                <h3 className="goal-amount"> ${goalAmount}</h3>
+                {/* <h3 className="percentage">{progressPercentage()}%</h3> */}
             </div>
             <div className="progress-bar">
             <div
@@ -53,14 +54,10 @@ const Progressbar = ({ goalAmount, currentAmount }) => {
                 style={{ width: `${progressPercentage()}%` }}
             ></div>
         </div>
-        {/* <TargetsContStyled>
-            <div className='date'>
-                {formattedDates.map((dateString, index) => (
-                    <h3 key={index}>{dateString}</h3>
-                ))}
-
-            </div>
-        </TargetsContStyled> */}
+        <TargetsContStyled>
+            <h3>1 day remaining</h3>
+            <h3>$190 away from goal</h3>
+        </TargetsContStyled>
         </ProgressbarStyled>
     )
 }
@@ -69,23 +66,18 @@ const TargetsContStyled = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
     gap: 1rem;
     width: 100%;
-    height: 70px;
+    height: 80px;
     align-items: center;
-    .date{
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        h3{
-            padding: 5px;
-            color: white;
-            background-color: red;
-            border-radius: 5px;
-            font-size: 15px;
-        }
-        
+    justify-content: space-between;
+    gap: 1rem;
+    h3{
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 5px;
+        color: black;
+        border-radius: 5px;
+        font-size: 12px;
     }
 `;
 
