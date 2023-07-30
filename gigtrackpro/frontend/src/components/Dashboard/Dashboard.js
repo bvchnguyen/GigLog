@@ -26,10 +26,6 @@ function Dashboard () {
     return (
         <DashboardStyled>
             <Innerlayout>
-                <div className="title">
-                    <h3>Hello, Bach!</h3>
-                    <p>Here's your weekly overview</p>
-                </div>
                 <div className="statistics-content">
                     <div className="overview-container">
                     <GeneralInfo />
@@ -37,14 +33,10 @@ function Dashboard () {
                     <div className="secondary-container">
                         <div className="chart-container">
                             <StatsChart />
-                            {/* <WeeklyStats /> */}
-                            {/* <RenderItems /> */}
-                            
                         </div>
                         <div className="right-container">
                             <Progressbar goalAmount={goalAmount} currentAmount={currentAmount} />
                             <WeeklyStats />
-                            {/* <RenderItems /> */}
                         </div>
                     </div>
                </div> 
@@ -89,14 +81,12 @@ const DashboardStyled = styled.div `
         gap: 2rem;
     }
     .overview-container{
-        /* background-color: blue; */
         border-radius: 10px;
         background-color: white;
         width: 100%;
         display: flex; 
         flex-direction: row;
         justify-content: flex-start;
-        /* height: 300px; */
         align-items: center;
         gap: 2rem;
     }

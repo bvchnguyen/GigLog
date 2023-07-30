@@ -57,7 +57,7 @@ const GeneralInfoStyled = styled.div`
     .GeneralInfo-container{
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
+        justify-content: space-between;
         gap: 1rem;
     }
     .totalEarnings-container, .totalTrips-container, .totalDistance-container {
