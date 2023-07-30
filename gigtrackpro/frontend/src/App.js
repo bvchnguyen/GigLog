@@ -37,7 +37,10 @@ function App() {
     const displayNavSelect = () => {
         switch(active){
             case 1:
-                return <h2>Dashboard</h2>
+                return <div>
+                            <h2>Hello, Bach!</h2>
+                            <p>This is your weekly overview</p> 
+                        </div>
             case 2: 
                 return <h2>Earnings</h2>
             case 3:
@@ -54,14 +57,17 @@ function App() {
         <Mainlayout>
             <Navigation active={ active } setActive={ setActive }/>
             <main>
-                {/* <div className='hellotest'>
+                <div className='hellotest'>
                     {displayNavSelect()}
-                </div> */}
+                    <div>
+                        <h4>Bach Nguyen</h4>
+                        <p>Delivering since 2021</p>
+                    </div>
+                </div>
                 <div>
                     {displayData()}
                 </div>
             </main>
-            {/* <RenderItems /> */}
         </Mainlayout>
     </AppStyled>
   );
@@ -71,9 +77,10 @@ const AppStyled = styled.div`
     height: 100vh;
     /* position: relative; */
     .hellotest{
-        background-color: #f8f7f0;
-        height: 10vh;
+        background-color: white;
+        height: 15vh;
         padding: 2rem;
+        border-radius: 25px 0 0 0;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -85,9 +92,7 @@ const AppStyled = styled.div`
         flex-direction: column;
         height: 100vh;
         width: 100%;
-        /* background-color: white; */
         background-color: #101214;
-        /* border-radius: 20px; */
         overflow: hidden;
         overflow-x: hidden;
         &::-webkit-scrollbar{
