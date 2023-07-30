@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { Mainlayout } from './styles/Layouts'
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { Mainlayout } from './styles/Layouts';
+import { useGlobalContext } from './context/Global';
 import Navigation from './components/Navigation/Navigation';
 import Dashboard from './components/Dashboard/Dashboard';
 import Statistics from './components/Statistics/Statistics';
 import Statement from './components/Statement/Statement';
 import Earnings from './components/Earnings/Earnings';
 import EarningsModal from './components/Modal/EarningsModal';
-import { useGlobalContext } from './context/Global';
 import RenderItems from './components/EarningsItems/RenderItems';
+import  avatar from '/Users/bvch/Documents/GigTrackPro/gigtrackpro/frontend/src/img/avatar.jpg'
+
 
 function App() {
 
@@ -39,7 +41,7 @@ function App() {
             case 1:
                 return <div>
                             <h2>Hello, Bach!</h2>
-                            <p>This is your weekly overview</p> 
+                            <p>Weekly overview</p> 
                         </div>
             case 2: 
                 return <h2>Earnings</h2>
@@ -57,11 +59,14 @@ function App() {
         <Mainlayout>
             <Navigation active={ active } setActive={ setActive }/>
             <main>
-                <div className='hellotest'>
+                <div className='heading'>
                     {displayNavSelect()}
-                    <div>
-                        <h4>Bach Nguyen</h4>
-                        <p>Delivering since 2021</p>
+                    <div className='avi-container'>
+                        <img  src={avatar} alt ="Avatar"/>
+                        <div className="name-info">
+                            <h3>Bach Nguyen</h3>
+                            <p>Delivering since 2021</p>
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -75,8 +80,7 @@ function App() {
 
 const AppStyled = styled.div`
     height: 100vh;
-    /* position: relative; */
-    .hellotest{
+    .heading{
         background-color: white;
         height: 15vh;
         padding: 2rem;
@@ -85,6 +89,18 @@ const AppStyled = styled.div`
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        .avi-container{
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            align-items: center;
+            img {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+    }
     }
     main{
         position: relative;
