@@ -88,8 +88,9 @@ export const GlobalProvider = ({children}) => {
     }
     const getExpense = async () =>{
         try {
-            const response = await axios.post(`${BASE_URL}get-expense`)
+            const response = await axios.get(`${BASE_URL}get-expense`)
             setExpense(response.data)
+            console.log('expense res: ', response)
             // Process the response.data here
         } catch (error) {
             if (error.response) {
@@ -249,6 +250,7 @@ export const GlobalProvider = ({children}) => {
         console.log('Total Fuel:', totalFuel);
         return totalFuel.toFixed(2);
     }
+    
     console.log('expense:', expense)
     return (
         <GlobalContext.Provider value ={{

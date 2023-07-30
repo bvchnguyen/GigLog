@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from 'styled-components';
 import { useGlobalContext } from "../../context/Global";
 import  { cash, car, gear } from "../../utils/Icons";
@@ -7,20 +7,25 @@ import EarningsItems from "../EarningsItems/EarningsItems";
 
 function GeneralInfo () {
     
-    const { getCurrentDateString,
-        totalEarnings,
-        totalTrips, 
-        totalDistance, 
-        getMonthlyEarnings, 
-        getWeeklyTrips, 
-        getWeekNumber, 
-        getWeeklyEarnings,
-        getWeeklyDistance} = useGlobalContext();
+    const { getExpense,
+            getCurrentDateString,
+            totalEarnings,
+            totalTrips, 
+            totalDistance, 
+            getMonthlyEarnings, 
+            getWeeklyTrips, 
+            getWeekNumber, 
+            getWeeklyEarnings,
+            getWeeklyDistance,
+            getTotalFuel} = useGlobalContext();
     
     const currentDate = getCurrentDateString();
     const weekNum = getWeekNumber(currentDate);
     
-    
+    useEffect(() =>{
+        getExpense()    
+    }, [])
+
     return (
         <GeneralInfoStyled>
             <div className="GeneralInfo-container">               
@@ -42,7 +47,7 @@ function GeneralInfo () {
                 </div>
                 <div className="totalDistance-container">
                     <p>Fuel Spent</p>
-                    <h2>${41.35}</h2>
+                    <h2>${getTotalFuel()}</h2>
                 </div>
             </div>
 
