@@ -4,38 +4,14 @@ import { Innerlayout } from "../../styles/Layouts";
 import { useGlobalContext } from "../../context/Global";
 import EarningsModal from "../Modal/EarningsModal";
 import EarningsItems from "../EarningsItems/EarningsItems";
+import RenderItems from "../EarningsItems/RenderItems";
 
 function Earnings () {
-    
-    const {addEarnings, earnings, getEarnings, deleteEarnings} = useGlobalContext()
-
-    useEffect(() =>{
-        getEarnings()    
-    }, [])
 
     return (
         <EarningsStyled>
             <Innerlayout>
-               <div className="earnings-content">
-                    <div className="form-container">
-                    </div>
-                    <div className="earnings-container">
-                        <div className="earnings">
-                            {earnings.map((earning) => {
-                                const {_id, amount, trip, category, description, date } = earning;
-                                return <EarningsItems 
-                                    key={_id}
-                                    id={_id}
-                                    amount={amount}
-                                    trip={trip}
-                                    category={category}
-                                    description={description}
-                                    date={date}
-                                />
-                            })}
-                        </div>
-                    </div>
-               </div>
+                <RenderItems />
             </Innerlayout>
         </EarningsStyled>
     )

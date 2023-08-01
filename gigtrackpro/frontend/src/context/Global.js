@@ -88,8 +88,9 @@ export const GlobalProvider = ({children}) => {
     }
     const getExpense = async () =>{
         try {
-            const response = await axios.post(`${BASE_URL}get-expense`)
+            const response = await axios.get(`${BASE_URL}get-expense`)
             setExpense(response.data)
+            console.log('expense res: ', response)
             // Process the response.data here
         } catch (error) {
             if (error.response) {
@@ -249,6 +250,21 @@ export const GlobalProvider = ({children}) => {
         console.log('Total Fuel:', totalFuel);
         return totalFuel.toFixed(2);
     }
+    const getWeeklyFuel = (thisWeek) =>{
+        let weeklyFuel = 0;
+        let dateString = '';
+        expense.forEach((exp) => {
+            dateString = exp.date;
+            const dateObject = new Date(dateString);
+            const weekNumber = getWeekNumber(dateObject);
+            if (weekNumber === thisWeek && exp.category === 'fuel'){
+                // console.log('adding:', earning.amount)
+                weeklyFuel += exp.amount
+            }
+        })
+        return weeklyFuel.toFixed(2);
+    }
+    
     console.log('expense:', expense)
     return (
         <GlobalContext.Provider value ={{
@@ -274,6 +290,7 @@ export const GlobalProvider = ({children}) => {
             getWeeklyAverageTripRatio,
             getTotalExpense,
             getTotalFuel,
+            getWeeklyFuel
         }}>
             {children}
         </GlobalContext.Provider>

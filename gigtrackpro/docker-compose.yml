@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  # Backend service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: gig_backend_container
+    working_dir: /usr/src/app
+    environment:
+      PORT: 3000
+  
+  # Frontend service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: node:14
+    container_name: gig-frontend-container
+    working_dir: /usr/src/app
+    environment:
+      PORT: 3001 # Change to your desired frontend port
+volumes:
+  mongo_db: {}
