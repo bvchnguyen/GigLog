@@ -17,7 +17,8 @@ function GeneralInfo () {
             getWeekNumber, 
             getWeeklyEarnings,
             getWeeklyDistance,
-            getTotalFuel} = useGlobalContext();
+            getTotalFuel,
+            getWeeklyFuel} = useGlobalContext();
     
     const currentDate = getCurrentDateString();
     const weekNum = getWeekNumber(currentDate);
@@ -47,7 +48,7 @@ function GeneralInfo () {
                 </div>
                 <div className="totalDistance-container">
                     <p>Fuel Spent</p>
-                    <h2>${getTotalFuel()}</h2>
+                    <h2>${getWeeklyFuel(weekNum)}</h2>
                 </div>
             </div>
 

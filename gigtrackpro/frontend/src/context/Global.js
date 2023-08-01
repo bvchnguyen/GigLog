@@ -250,6 +250,20 @@ export const GlobalProvider = ({children}) => {
         console.log('Total Fuel:', totalFuel);
         return totalFuel.toFixed(2);
     }
+    const getWeeklyFuel = (thisWeek) =>{
+        let weeklyFuel = 0;
+        let dateString = '';
+        expense.forEach((exp) => {
+            dateString = exp.date;
+            const dateObject = new Date(dateString);
+            const weekNumber = getWeekNumber(dateObject);
+            if (weekNumber === thisWeek && exp.category === 'fuel'){
+                // console.log('adding:', earning.amount)
+                weeklyFuel += exp.amount
+            }
+        })
+        return weeklyFuel.toFixed(2);
+    }
     
     console.log('expense:', expense)
     return (
@@ -276,6 +290,7 @@ export const GlobalProvider = ({children}) => {
             getWeeklyAverageTripRatio,
             getTotalExpense,
             getTotalFuel,
+            getWeeklyFuel
         }}>
             {children}
         </GlobalContext.Provider>
