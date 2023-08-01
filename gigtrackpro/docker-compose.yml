@@ -12,8 +12,8 @@ services:
       - '3000:3000'
     environment:
       PORT: 3000
-    env_file:
-      ./backend/.env
+    volumes:
+      - ./backend:/usr/src/app
   
   # Frontend service
   frontend:
@@ -27,4 +27,6 @@ services:
       PORT: 3001
     ports:
       - '3001:3001'
+    volumes:
+      - ./frontend:/usr/src/app
 
