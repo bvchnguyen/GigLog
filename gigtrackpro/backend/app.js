@@ -22,7 +22,7 @@ const server = () => {
 };
 
 app.get('/', (req, res)=> {
-    res.send('Hello world')
+    res.send('Backend is connected and running...')
 })
 
 // Routes
