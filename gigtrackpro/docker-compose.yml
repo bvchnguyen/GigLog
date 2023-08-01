@@ -12,7 +12,8 @@ services:
       - '3000:3000'
     environment:
       PORT: 3000
-    command: npm start
+    env_file:
+      ./backend/.env
   
   # Frontend service
   frontend:
@@ -26,5 +27,4 @@ services:
       PORT: 3001
     ports:
       - '3001:3001'
-    command: npm start
 
