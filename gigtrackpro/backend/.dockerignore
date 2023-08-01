@@ -1,0 +1,32 @@
+# Ignore sensitive files
+.env
+secrets/
+
+# Ignore version control system files
+.git/
+.gitignore
+.svn/
+.hg/
+
+# Ignore Node.js/npm-related files
+node_modules/
+npm-debug.log
+
+# Ignore Python-related files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore build and development artifacts
+dist/
+build/
+*.log
+
+# Ignore IDE/editor-specific files
+.vscode/
+.idea/
+.DS_Store
+
+# Ignore documentation and test data
+docs/
+test-data/
