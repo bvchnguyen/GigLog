@@ -8,8 +8,11 @@ services:
       dockerfile: Dockerfile
     container_name: gig_backend_container
     working_dir: /usr/src/app
+    ports:
+      - '3000:3000'
     environment:
       PORT: 3000
+    command: npm start
   
   # Frontend service
   frontend:
@@ -17,9 +20,11 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     image: node:14
-    container_name: gig-frontend-container
+    container_name: gig_frontend_container
     working_dir: /usr/src/app
     environment:
-      PORT: 3001 # Change to your desired frontend port
-volumes:
-  mongo_db: {}
+      PORT: 3001
+    ports:
+      - '3001:3001'
+    command: npm start
+
