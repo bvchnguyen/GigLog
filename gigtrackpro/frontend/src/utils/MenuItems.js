@@ -17,14 +17,14 @@ export const menuItems = [
     },
     {
         id: 3,
-        title: 'View Statistics',
+        title: 'Analytics',
         icon: chart,
         link: '/dashboard',
 
     },
     {
         id: 4,
-        title: 'View Statements',
+        title: 'Statements',
         icon: file,
         link: '/dashboard',
 
