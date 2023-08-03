@@ -2,7 +2,7 @@ import { weekdays } from 'moment';
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 
-const Progressbar = ({ goalAmount, currentAmount }) => {
+const WeeklyGoalBar = ({ goalAmount, currentAmount }) => {
     
 
     const progressPercentage = () =>{
@@ -15,7 +15,8 @@ const Progressbar = ({ goalAmount, currentAmount }) => {
     const getWeekDates = () => {
         const today = new Date();
         const dayOfWeek = today.getDay(); // 0 (Sunday) to 6 (Saturday)
-      
+        const remainingDays = 7 - dayOfWeek;
+
         // Calculate the date of Monday (first day of the week)
         const monday = new Date(today);
         monday.setDate(today.getDate() - dayOfWeek + 1);
@@ -28,25 +29,18 @@ const Progressbar = ({ goalAmount, currentAmount }) => {
           weekDates.push(currentDate);
         }
       
-        return weekDates;
+        return[remainingDays, weekDates];
     };
-    const weekDates = getWeekDates();
+    const [remainingDays ,weekDates] = getWeekDates();
     const formattedDates = weekDates.map((date) =>
         date.toLocaleString('en-US', { day: 'numeric' })
     );
-    // const formattedDays = weekDates.map((date) =>
-    //     date.toLocaleString('en-US', { weekday: 'short' })
-    // );
-
-    console.log(formattedDates);
-
     return (
-        <ProgressbarStyled>
+        <WeeklyGoalBarStyled>
             <h2 className='name'>Weekly Goal</h2>
             <div className="currentToGoal">
                 <h3 className="percentage">{progressPercentage()}%</h3>
                 <h3 className="goal-amount"> ${goalAmount}</h3>
-                {/* <h3 className="percentage">{progressPercentage()}%</h3> */}
             </div>
             <div className="progress-bar">
             <div
@@ -55,10 +49,10 @@ const Progressbar = ({ goalAmount, currentAmount }) => {
             ></div>
         </div>
         <TargetsContStyled>
-            <h3>1 day remaining</h3>
-            <h3>$190 away from goal</h3>
+            <h3>{remainingDays} days remaining</h3>
+            <h3>${goalAmount - currentAmount} away from goal</h3>
         </TargetsContStyled>
-        </ProgressbarStyled>
+        </WeeklyGoalBarStyled>
     )
 }
 
@@ -74,14 +68,14 @@ const TargetsContStyled = styled.div`
     gap: 1rem;
     h3{
         font-family: Arial, Helvetica, sans-serif;
-        padding: 5px;
-        color: black;
+        font-weight: 100;
+        color:#c6c6c6;
         border-radius: 5px;
-        font-size: 12px;
+        font-size: 15px;
     }
 `;
 
-const ProgressbarStyled = styled.div`
+const WeeklyGoalBarStyled = styled.div`
     border-radius: 15px;
     border: solid 2px #e2e2e2;
     display: flex;
@@ -141,4 +135,4 @@ const ProgressbarStyled = styled.div`
 `;
 
 
-export default Progressbar;
+export default WeeklyGoalBar;

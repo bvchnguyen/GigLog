@@ -1,42 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from 'styled-components'
 import { useGlobalContext } from "../../context/Global";
 import { Innerlayout } from "../../styles/Layouts";
-import EarningsGoals from "../Goals/Goals";
-import GenInfo from "../GeneralInfo/GenInfo";
+import WeeklyGoalBar from "../Chart/WeeklyGoalBar";
 import StatsChart from "../Chart/Chart";
-import IndivInfo from "../GeneralInfo/IndivInfo";
-import Progressbar from "../Chart/ProgressBar";
-import { dashboard } from "../../utils/Icons";
-import WeeklyStats from "../GeneralInfo/WeeklyMetrics";
-import GoalMetrics from "../Goals/GoalMetrics";
-import GeneralInfo from "../GeneralInfo/GeneralInfo";
-import RenderItems from "../EarningsItems/RenderItems";
+import WeeklyMetrics from "../GeneralInfo/WeeklyMetrics";
+import WeeklyStats from "../GeneralInfo/WeeklyStats";
 
 function Dashboard () {
 
-    const { getCurrentDateString, totalEarnings, getAverageTripRatio, getWeekNumber, getWeeklyEarnings } = useGlobalContext();
+    const { getCurrentDateString, getWeekNumber, getEarnings, getExpense, getWeeklyEarnings } = useGlobalContext();
     const goalAmount = 550; /* Temp goalAmount, will replace with custom input */ 
     const today = getCurrentDateString();
     const currentWeek = getWeekNumber(today);
     const currentAmount = getWeeklyEarnings(currentWeek);
-
-    console.log('current amount: ', currentAmount)
+    
+    useEffect(() => {
+        getExpense()
+        getEarnings()
+    }, []);
 
     return (
         <DashboardStyled>
             <Innerlayout>
                 <div className="statistics-content">
                     <div className="overview-container">
-                    <GeneralInfo />
+                    <WeeklyStats />
                     </div>
                     <div className="secondary-container">
                         <div className="chart-container">
                             <StatsChart />
                         </div>
                         <div className="right-container">
-                            <Progressbar goalAmount={goalAmount} currentAmount={currentAmount} />
-                            <WeeklyStats />
+                            <WeeklyGoalBar goalAmount={goalAmount} currentAmount={currentAmount} />
+                            <WeeklyMetrics />
                         </div>
                     </div>
                </div> 

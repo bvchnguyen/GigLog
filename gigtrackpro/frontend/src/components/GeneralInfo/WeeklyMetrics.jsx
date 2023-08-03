@@ -1,23 +1,17 @@
 import React, { useState, useEffect }  from "react";
+import axios from "axios";
 import styled from 'styled-components';
 import { useGlobalContext } from "../../context/Global";
-import EarningsModal from "../Modal/EarningsModal";
-import EarningsItems from "../EarningsItems/EarningsItems";
 
-function WeeklyStats (){
-
-    const [borderColor, setBorderColor] = useState('white');
+function WeeklyMetrics (){
 
     const { getCurrentDateString, 
             getWeekNumber, 
-            totalEarnings, 
             getWeeklyEarnings,
-            getWeeklyTrips,
-            getWeeklyDistance,
-            getAverageTripRatio,
             getWeeklyAverageTripRatio,
-            getTotalExpense,
-            getTotalFuel } = useGlobalContext();
+            getWeeklyTrips,
+            aggregatedData, 
+            aggregateEarningsData } = useGlobalContext();
 
     const today = getCurrentDateString();
     const weekNum = getWeekNumber(today);
@@ -25,18 +19,6 @@ function WeeklyStats (){
     const earningCondition = 100;
     const stats = getWeeklyAverageTripRatio(weekNum);
     const earningStats = getWeeklyEarnings(weekNum);
-
-    console.log('stats: ', stats);
-
-    /* Algorithm to determine if trip count will meet the weekly goal */
-    const DollarsPerTripsCondition = () => {
-        let weeklyEarning = earningStats;
-        let weeklyGoal = 550;
-        let weeklyTrips = getWeeklyTrips(weekNum);
-
-        return weeklyEarning / weeklyTrips;
-        
-    }
 
     const checkBorderColor = (stats, conditionMet) => {
         if (stats >= conditionMet) {
@@ -49,16 +31,22 @@ function WeeklyStats (){
             return 'white';
         }
     };
+    
+    useEffect(() => {
+        aggregateEarningsData()
+    }, []);
 
+    // console.log('Dollars to miles: ', aggregatedData.dollarsToMiles)
     return (
-        <WeeklyStatsStyled>
-            <h2 className='metrics-title'>Metrics</h2>
+        <WeeklyMetricsStyled>
+        {aggregatedData ? (
             <div className="avgstats-content">
             <div className="indi-content" style={{ border: `2px solid ${checkBorderColor(earningStats, earningCondition)}`}}>
                 <div className="inner-content">
                     <div className="text">
                         <p>Dollars / trip</p>
-                        <h2>${(getWeeklyEarnings(weekNum) / getWeeklyTrips(weekNum)).toFixed(2)}</h2>
+                        {/* <h2>${(getWeeklyEarnings(weekNum) / getWeeklyTrips(weekNum)).toFixed(2)}</h2> */}
+                        <h2>${aggregatedData.dollarsToTrips}</h2>
                     </div>
                     <div className="miles-rating">
                         <h6>Good</h6>
@@ -69,7 +57,7 @@ function WeeklyStats (){
                 <div className="inner-content">
                     <div className="text">
                         <p className="box-label">Dollars / mi</p>
-                        <h2>${stats}</h2>
+                        <h2>${aggregatedData.dollarsToMiles}</h2>
                     </div>
                     <div className="miles-rating">
                         <h6>Good</h6>
@@ -80,7 +68,7 @@ function WeeklyStats (){
                 <div className="inner-content">
                     <div className="text">
                         <p className="box-label">Daily Avg</p>
-                        <h2>$75</h2>
+                        <h2>${aggregatedData.dailyAvg}</h2>
                     </div>
                     <div className="miles-rating">
                         <h6>Good</h6>
@@ -91,19 +79,22 @@ function WeeklyStats (){
                 <div className="inner-content">
                     <div className="text">
                         <p className="box-label">Trips / Day</p>
-                        <h2>7.4</h2>
+                        <h2>{aggregatedData.avgTrip}</h2>
                     </div>
                     <div className="miles-rating">
                         <h6>Good</h6>
                     </div>
                 </div>
             </div>
-        </div>
-        </WeeklyStatsStyled>
+            </div>
+            ) : (
+                <p>Loading...</p>
+            )}
+        </WeeklyMetricsStyled>
     )
 
 }
-const WeeklyStatsStyled = styled.div`
+const WeeklyMetricsStyled = styled.div`
     width: 100%;
     border-radius: 15px;
     border: solid 2px #e2e2e2;
@@ -175,4 +166,4 @@ const WeeklyStatsStyled = styled.div`
     }
 `;
 
-export default WeeklyStats;
+export default WeeklyMetrics;
