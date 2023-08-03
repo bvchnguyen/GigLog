@@ -15,8 +15,7 @@ function App() {
     const [active, setActive] = useState(1)
 
     const global = useGlobalContext()
-    console.log(global)
-
+    
     // Function to display data based on selected menu item
     const displayData = () => {
         // Switch to render the component depending on state

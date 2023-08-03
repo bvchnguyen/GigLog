@@ -1,31 +1,26 @@
 import React, { useEffect } from "react";
 import styled from 'styled-components';
 import { useGlobalContext } from "../../context/Global";
-import  { cash, car, gear } from "../../utils/Icons";
-import EarningsModal from "../Modal/EarningsModal";
-import EarningsItems from "../EarningsItems/EarningsItems";
 
 function GeneralInfo () {
     
-    const { getExpense,
+    const { 
+            getEarnings,
+            getExpense,
             getCurrentDateString,
-            totalEarnings,
-            totalTrips, 
-            totalDistance, 
-            getMonthlyEarnings, 
             getWeeklyTrips, 
             getWeekNumber, 
             getWeeklyEarnings,
             getWeeklyDistance,
-            getTotalFuel,
             getWeeklyFuel} = useGlobalContext();
     
     const currentDate = getCurrentDateString();
     const weekNum = getWeekNumber(currentDate);
     
     useEffect(() =>{
-        getExpense()    
-    }, [])
+        getEarnings()
+        getExpense()
+    },[]);
 
     return (
         <GeneralInfoStyled>
@@ -51,7 +46,6 @@ function GeneralInfo () {
                     <h2>${getWeeklyFuel(weekNum)}</h2>
                 </div>
             </div>
-
             </GeneralInfoStyled>
     )
 }
