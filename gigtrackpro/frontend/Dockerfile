@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm ci
+RUN npm install -g nodemon
 
 COPY . .
 
@@ -12,4 +12,4 @@ ENV PORT=3001
 
 EXPOSE 3001
 
-CMD ["npm", "start"]
+CMD ["nodemon", "index.js"]
