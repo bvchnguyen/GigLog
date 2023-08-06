@@ -7,9 +7,6 @@ function WeeklyMetrics (){
 
     const { getCurrentDateString, 
             getWeekNumber, 
-            getWeeklyEarnings,
-            getWeeklyAverageTripRatio,
-            getWeeklyTrips,
             aggregatedData, 
             aggregateEarningsData } = useGlobalContext();
 
@@ -17,8 +14,8 @@ function WeeklyMetrics (){
     const weekNum = getWeekNumber(today);
     const condition = 1.7;
     const earningCondition = 100;
-    const stats = getWeeklyAverageTripRatio(weekNum);
-    const earningStats = getWeeklyEarnings(weekNum);
+    const stats = 10;
+    const earningStats = 239;
 
     const checkBorderColor = (stats, conditionMet) => {
         if (stats >= conditionMet) {
@@ -31,21 +28,21 @@ function WeeklyMetrics (){
             return 'white';
         }
     };
-    
     useEffect(() => {
         aggregateEarningsData()
     }, []);
 
-    // console.log('Dollars to miles: ', aggregatedData.dollarsToMiles)
     return (
         <WeeklyMetricsStyled>
+            <div className="title-con">
+                <h2>Weekly Metrics</h2>
+            </div>
         {aggregatedData ? (
             <div className="avgstats-content">
             <div className="indi-content" style={{ border: `2px solid ${checkBorderColor(earningStats, earningCondition)}`}}>
                 <div className="inner-content">
                     <div className="text">
                         <p>Dollars / trip</p>
-                        {/* <h2>${(getWeeklyEarnings(weekNum) / getWeeklyTrips(weekNum)).toFixed(2)}</h2> */}
                         <h2>${aggregatedData.dollarsToTrips}</h2>
                     </div>
                     <div className="miles-rating">
@@ -98,6 +95,21 @@ const WeeklyMetricsStyled = styled.div`
     width: 100%;
     border-radius: 15px;
     border: solid 2px #e2e2e2;
+    font-family: Arial, Helvetica, sans-serif;
+
+    .title-con{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem;
+        padding-bottom: 0;
+        h2{
+            font-size: 17px;
+            font-weight: 200;
+            letter-spacing: 1px;
+        }
+
+    }
     .metrics-title{
         padding: 1rem;
         padding-bottom: 0;

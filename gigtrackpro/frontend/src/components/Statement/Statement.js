@@ -1,6 +1,7 @@
 import React from "react";
 import styled from 'styled-components'
 import { Innerlayout } from "../../styles/Layouts";
+import RenderItems from "../EarningsItems/RenderItems";
 
 function Statement () {
     const goalAmount = 550; // Set your goal amount here
@@ -8,6 +9,7 @@ function Statement () {
     return (
         <StatementStyled>
             <Innerlayout>
+                <RenderItems />
             </Innerlayout>
         </StatementStyled>
     )

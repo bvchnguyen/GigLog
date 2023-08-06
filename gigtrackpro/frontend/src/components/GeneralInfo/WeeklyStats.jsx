@@ -7,20 +7,20 @@ function WeeklyStats () {
     const { getCurrentDateString, 
             getWeekNumber, 
             getEarnings, 
-            getExpense, 
+            getExpense,
+            earnings,
+            expense,
             getWeeklyFuel, 
             aggregatedData, 
             aggregateEarningsData } = useGlobalContext()
 
     const today = getCurrentDateString();
     const weekNum = getWeekNumber(today);
-
+     
     useEffect(() => {
-        aggregateEarningsData()
-        // getExpense()
-        // getEarnings()
-    }, []);
-
+        aggregateEarningsData();
+    }, [earnings, expense]);
+    
     return (
         <WeeklyStatsStyled >     
             {aggregatedData ? (

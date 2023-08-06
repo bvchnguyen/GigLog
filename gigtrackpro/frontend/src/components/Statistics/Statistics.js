@@ -10,7 +10,6 @@ function Statistics () {
         <StatisticsStyled>
             <Innerlayout>
                 <div className="statistics-content">
-                <GenInfo />
                 </div>
             </Innerlayout>
         </StatisticsStyled>

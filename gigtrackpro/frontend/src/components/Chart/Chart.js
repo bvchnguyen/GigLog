@@ -145,7 +145,9 @@ function StatsChart() {
 
     return (
         <StatsChartstyled>
-            <Bar data={chartData} options={options} />
+            <div className='chart'>
+                <Bar data={chartData} options={options} />            
+            </div>
         </StatsChartstyled>
     );
 }
@@ -159,6 +161,9 @@ const StatsChartstyled = styled.div `
     padding: 1rem;
     border-radius: 15px;
     border: solid 2px #e2e2e2;
+    .chart{
+        height: 240px;
+    }
     .display-week{
         display: flex;
         flex-direction: row;

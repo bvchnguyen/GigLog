@@ -5,16 +5,13 @@ import { useGlobalContext } from "../../context/Global";
 import EarningsModal from "../Modal/EarningsModal";
 import EarningsItems from "../EarningsItems/EarningsItems";
 import GeneralInfo from "../GeneralInfo/GeneralInfo";
-import EarningsGoals from "../Goals/Goals";
 
 function RenderItems () {
     
-    const {addEarnings, getEarnings, earnings, deleteEarnings, totalEarnings } = useGlobalContext()
-    const goal = 2200; // Set the goal value here
-    const goalDifference = goal - totalEarnings();
-
+    const {addEarnings, getEarnings, earnings, deleteEarnings } = useGlobalContext()
+    
     useEffect(() =>{
-        getEarnings()    
+        getEarnings();    
     }, [])
 
     return (
