@@ -1,42 +1,70 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from 'styled-components'
 import { useGlobalContext } from "../../context/Global";
 import { Innerlayout } from "../../styles/Layouts";
-import EarningsGoals from "../Goals/Goals";
-import GenInfo from "../GeneralInfo/GenInfo";
+import WeeklyGoalBar from "../Chart/WeeklyGoalBar";
 import StatsChart from "../Chart/Chart";
-import IndivInfo from "../GeneralInfo/IndivInfo";
-import Progressbar from "../Chart/ProgressBar";
-import { dashboard } from "../../utils/Icons";
-import WeeklyStats from "../GeneralInfo/WeeklyMetrics";
-import GoalMetrics from "../Goals/GoalMetrics";
-import GeneralInfo from "../GeneralInfo/GeneralInfo";
-import RenderItems from "../EarningsItems/RenderItems";
+import WeeklyMetrics from "../GeneralInfo/WeeklyMetrics";
+import WeeklyStats from "../GeneralInfo/WeeklyStats";
+import DeliveryTable from "../EarningsItems/DeliveryTable";
 
 function Dashboard () {
 
-    const { getCurrentDateString, totalEarnings, getAverageTripRatio, getWeekNumber, getWeeklyEarnings } = useGlobalContext();
-    const goalAmount = 550; /* Temp goalAmount, will replace with custom input */ 
+    const { getCurrentDateString, 
+            getWeekNumber, 
+            aggregatedData, 
+            aggregateEarningsData, 
+            getEarnings, 
+            getExpense,
+            earnings,
+            earningsDataMapping } = useGlobalContext();
+
     const today = getCurrentDateString();
     const currentWeek = getWeekNumber(today);
-    const currentAmount = getWeeklyEarnings(currentWeek);
+    const goalAmount = 550.00; /* Temp goalAmount, will replace with custom input */ 
+    const MappedData = earningsDataMapping(earnings);
+    const data = React.useMemo(() => MappedData, []);
 
-    console.log('current amount: ', currentAmount)
+    const columns = React.useMemo(
+        () => [
+            {
+                Header: "Company",
+                accessor: "category",
+            },
+            {
+                Header: "Date",
+                accessor: "date",
+            },
+            {
+                Header: "Trips",
+                accessor: "trip",
+            },
+            {
+                Header: "Amount",
+                accessor: "amount",
+            },
+    ],[]);
+
+    useEffect(() => {
+        getExpense()
+        getEarnings()
+    }, []);
 
     return (
         <DashboardStyled>
             <Innerlayout>
                 <div className="statistics-content">
                     <div className="overview-container">
-                    <GeneralInfo />
+                    <WeeklyStats />
                     </div>
                     <div className="secondary-container">
                         <div className="chart-container">
                             <StatsChart />
+                            <WeeklyMetrics />
                         </div>
                         <div className="right-container">
-                            <Progressbar goalAmount={goalAmount} currentAmount={currentAmount} />
-                            <WeeklyStats />
+                            <WeeklyGoalBar goalAmount={goalAmount.toFixed(2)} />
+                            <DeliveryTable columns={columns} data={data} />
                         </div>
                     </div>
                </div> 
@@ -57,13 +85,14 @@ const DashboardStyled = styled.div `
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        width: 45%;
     }
     .chart-container{ 
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        height: 300px;
-        width: 60%;
+        height: 100%;
+        width: 55%;
     }
     .title{
         padding: 2rem;
@@ -79,6 +108,7 @@ const DashboardStyled = styled.div `
         padding: 2rem;
         padding-top: 0;
         gap: 2rem;
+        height: 100vh;
     }
     .overview-container{
         border-radius: 10px;

@@ -2,12 +2,15 @@ import React from "react";
 import styled from 'styled-components'
 import { useGlobalContext } from "../../context/Global";
 import { Innerlayout } from "../../styles/Layouts";
+import GenInfo from "../GeneralInfo/WeeklyStats";
 
 function Statistics () {
 
     return (
         <StatisticsStyled>
             <Innerlayout>
+                <div className="statistics-content">
+                </div>
             </Innerlayout>
         </StatisticsStyled>
     )

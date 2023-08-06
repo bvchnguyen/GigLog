@@ -20,13 +20,10 @@ const server = () => {
         console.log('Listening to port: ', PORT)
     })
 };
-
 app.get('/', (req, res)=> {
     res.send('Backend is connected and running...')
 })
-
 // Routes
-
 readdirSync('./routes').map((route) => app.use('/api/v1', require('./routes/' + route)));
 
 server();
