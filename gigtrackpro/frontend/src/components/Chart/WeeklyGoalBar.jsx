@@ -1,9 +1,13 @@
-import { weekdays } from 'moment';
 import React, {useState, useEffect} from 'react';
+import { useGlobalContext } from "../../context/Global";
 import styled from 'styled-components';
 
-const WeeklyGoalBar = ({ goalAmount, currentAmount }) => {
+const WeeklyGoalBar = ({ goalAmount }) => {
     
+    const { aggregatedData } = useGlobalContext();
+
+    const currentAmount = aggregatedData.totalEarnings;
+    const goalDiff = goalAmount - currentAmount;
 
     const progressPercentage = () =>{
         if (goalAmount === 0 || goalAmount === null){
@@ -11,11 +15,10 @@ const WeeklyGoalBar = ({ goalAmount, currentAmount }) => {
         }
         return ((currentAmount / goalAmount) * 100).toFixed(2);
     }
-
     const getWeekDates = () => {
         const today = new Date();
         const dayOfWeek = today.getDay(); // 0 (Sunday) to 6 (Saturday)
-        const remainingDays = 7 - dayOfWeek;
+        const remainingDays = 8 - dayOfWeek;
 
         // Calculate the date of Monday (first day of the week)
         const monday = new Date(today);
@@ -49,8 +52,8 @@ const WeeklyGoalBar = ({ goalAmount, currentAmount }) => {
             ></div>
         </div>
         <TargetsContStyled>
-            <h3>{remainingDays} days remaining</h3>
-            <h3>${goalAmount - currentAmount} away from goal</h3>
+            <h3>{remainingDays === 1 ? 'Today is the last day' : `${remainingDays} days remaining`}</h3>
+            <h3>${goalDiff >= goalAmount ? 'Goal Accomplished!' : `${goalDiff} away from goal`}</h3>
         </TargetsContStyled>
         </WeeklyGoalBarStyled>
     )

@@ -47,7 +47,9 @@ const performAggregation = async () => {
         },
         {
             $project: {
-                totalEarnings: 1,
+                totalEarnings: {
+                    $trunc : [ '$totalEarnings', 2 ]
+                },
                 totalTrips: 1,
                 totalMi: 1,
                 dailyAvg: {

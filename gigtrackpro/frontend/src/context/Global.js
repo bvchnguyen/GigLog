@@ -9,9 +9,14 @@ export const GlobalProvider = ({children}) => {
     
     const [earnings, setEarnings] = useState([]);
     const [expense, setExpense] = useState([]);
-    const [aggregatedData, setAggregatedData] = useState(null);
+    const [aggregatedData, setAggregatedData] = useState([]);
     const [error, setError] = useState([null]);
     
+    const formatDate = (date) => {
+        const dateString = new Date(date); 
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return dateString.toLocaleDateString(undefined, options);
+    }
     /* Function to get the current date as a string */ 
     const getCurrentDateString = () => {
         const currentDate = new Date();
@@ -45,15 +50,40 @@ export const GlobalProvider = ({children}) => {
     /* Function to render earnings/trips upon logging */ 
     const getEarnings = async () => {
         try {
-            const response = await axios.get(`${BASE_URL}get-earning`)
-            setEarnings(response.data)
-            // Process the response.data here
+            const response = await axios.get(`${BASE_URL}get-earning`);
+            setEarnings(response.data);
+            // console.log('get Earnings ', response.data);
         } catch (error) {
             if (error.response) {
                 setError(error.response.data.message);
             } else {
                 setError("An error occurred while making the get request.")
             }
+        }
+    }
+    const earningsDataMapping = (earningsData) => {
+        return earningsData.map(e => ({
+            amount: e.amount,
+            trip: e.trip,
+            date: formatDate(e.date),
+            category: e.category,
+            distance: Math.abs(e.endingMi - e.startingMi),
+        }))
+    }
+    const getMappedEarningsData = async () => {
+        const mappedData = earningsDataMapping(earnings);
+        console.log('mappedData in Global: ', mappedData);
+        return mappedData;
+    }
+    const aggregateEarningsData = async () => {
+        try{
+            const response = await axios.get(`${BASE_URL}aggregateData`)
+            setAggregatedData(response.data)
+            // console.log('response.data: ', response.data);
+            // getEarnings()
+        }
+        catch(error){
+            console.error('Error fetching aggregated data:', error);
         }
     }
     /* Function to delete earnings/trips from the database */ 
@@ -69,15 +99,6 @@ export const GlobalProvider = ({children}) => {
             } else {
                 setError("An error occurred while making the delete request.")
             }
-        }
-    }
-    const aggregateEarningsData = async () => {
-        try{
-            const response = await axios.get(`${BASE_URL}aggregateData`)
-            setAggregatedData(response.data)
-        }
-        catch(error){
-            console.error('Error fetching aggregated data:', error);
         }
     }
     const addExpense = async (expense) => {
@@ -121,6 +142,29 @@ export const GlobalProvider = ({children}) => {
             }
         }
     }
+    const getWeeklyStats = (thisWeek) => {
+        let income, trips, dailyDist, weeklyDist, compensation = 0;
+        let dateString = '';
+        earnings.forEach((e) => {
+            dateString = e.date;
+            const dateObject = new Date(dateString);
+            const weekNumber = getWeekNumber(dateObject);
+            if (weekNumber === thisWeek){
+                income += e.amount
+                trips += e.amount
+                dailyDist += Math.abs(e.endingMi - e.startingMi);
+                weeklyDist += dailyDist
+            }
+            compensation = (income*0.655).toFixed(2);
+        })
+        const weeklyStats = {
+            earnings: income,
+            trips: trips,
+            weeklyDistance: weeklyDist,
+            compensation: compensation
+        }
+        return weeklyStats;
+    }
     const getTotalFuel = () =>{
         let totalFuel = 0;
         expense.forEach((exp) => {
@@ -148,7 +192,9 @@ export const GlobalProvider = ({children}) => {
             getCurrentDateString,
             addEarnings,
             getEarnings,
-            earnings,
+            earningsDataMapping,
+            getMappedEarningsData,
+            earnings,  
             expense,
             aggregatedData,
             aggregateEarningsData,
