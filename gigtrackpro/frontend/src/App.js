@@ -67,9 +67,9 @@ function App() {
                     {displayData()}
                 </div>
             </main>
-        </Mainlayout>
-    </AppStyled>
-  );
+          </Mainlayout>
+        </AppStyled>
+    );
 }
 
 const AppStyled = styled.div`
