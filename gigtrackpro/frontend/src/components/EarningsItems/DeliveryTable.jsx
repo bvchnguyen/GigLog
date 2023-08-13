@@ -1,21 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from 'styled-components';
+import { useGlobalContext } from "../../context/Global";
 import { useTable, useSortBy } from 'react-table';
 
 function DeliveryTable({ columns, data }) {
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable(
-    {
-      columns,
-      data,
-    },
-    useSortBy // Add the useSortBy hook
-  );
+    
+    const { getEarnings } = useGlobalContext();
+
+    const {
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        rows,
+        prepareRow,
+    } = useTable(
+        {
+        columns,
+        data,
+        },
+        useSortBy // Add the useSortBy hook
+    );
+
+    useEffect(() => {
+        getEarnings();
+    }, []);
 
   return (
     <DeliveryTableStyled>

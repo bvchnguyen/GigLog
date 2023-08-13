@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { BrowserRouter as Router, Routes, Route, Redirect } from 'react-router-dom';
 import { Mainlayout } from './styles/Layouts'
 import Navigation from './components/Navigation/Navigation';
 import Dashboard from './components/Dashboard/Dashboard';
@@ -71,7 +72,6 @@ function App() {
         </AppStyled>
     );
 }
-
 const AppStyled = styled.div`
     height: 100vh;
     /* position: relative; */

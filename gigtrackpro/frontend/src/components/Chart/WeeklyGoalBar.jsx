@@ -7,10 +7,11 @@ const WeeklyGoalBar = ({ goalAmount }) => {
     const { aggregatedData } = useGlobalContext();
 
     const currentAmount = aggregatedData.totalEarnings;
+    console.log(currentAmount);
     const goalDiff = goalAmount - currentAmount;
 
     const progressPercentage = () =>{
-        if (goalAmount === 0 || goalAmount === null){
+        if (currentAmount === 0 || currentAmount === null){
             return 0;
         }
         return ((currentAmount / goalAmount) * 100).toFixed(2);
@@ -53,7 +54,7 @@ const WeeklyGoalBar = ({ goalAmount }) => {
         </div>
         <TargetsContStyled>
             <h3>{remainingDays === 1 ? 'Today is the last day' : `${remainingDays} days remaining`}</h3>
-            <h3>${goalDiff >= goalAmount ? 'Goal Accomplished!' : `${goalDiff} away from goal`}</h3>
+            <h3>{currentAmount >= goalAmount ? 'Goal Accomplished!' : `\$${goalDiff} away from goal`}</h3>
         </TargetsContStyled>
         </WeeklyGoalBarStyled>
     )

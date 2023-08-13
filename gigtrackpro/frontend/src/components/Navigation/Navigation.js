@@ -118,7 +118,7 @@ const NavStyled = styled.nav`
             transition: all .4s ease-in-out;
             padding-left: 1rem;
             position: relative;
-            border-radius: 20px;
+            border-radius: 5px;
             font-size: 15px;
         }
         li:hover{
@@ -132,7 +132,7 @@ const NavStyled = styled.nav`
             font-style: italic;
         }   
     }
-    /* .active{
+    .active{
         &::before{
             content: "";
             position: absolute;
@@ -144,7 +144,7 @@ const NavStyled = styled.nav`
             border-radius: 0 10px 10px 0;
             font-style: italic;
         }
-    } */
+    }
 `;
 
 export default Navigation;

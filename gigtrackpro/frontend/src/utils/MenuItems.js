@@ -12,21 +12,21 @@ export const menuItems = [
         id: 2,
         title: 'Earnings',
         icon: earning,
-        link: '/dashboard',
+        link: '/Earnings',
 
     },
     {
         id: 3,
         title: 'Analytics',
         icon: chart,
-        link: '/dashboard',
+        link: '/Analytics',
 
     },
     {
         id: 4,
         title: 'Statements',
         icon: file,
-        link: '/dashboard',
+        link: '/Statements',
 
     }
 ]
