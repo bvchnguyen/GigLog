@@ -13,6 +13,7 @@ frontend/.pnp.js
 
 # testing
 frontend/coverage
+frontend/src/pages/storage.jsx
 
 frontend/package-lock.json
 frontend/package.json
