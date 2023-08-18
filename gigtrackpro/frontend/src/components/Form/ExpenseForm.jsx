@@ -117,7 +117,6 @@ const ExpenseFormStyled = styled.form`
         place-items: center;
         text-align: center;
         border: none;
-        /* border: 1px solid #565656; */
         height: 50px;
         width: 100%;
         place-items: center;

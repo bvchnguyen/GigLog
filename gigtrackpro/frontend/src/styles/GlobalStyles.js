@@ -20,6 +20,6 @@ export const GlobalStyle = createGlobalStyle`
     html, body{
         overflow: hidden;
         font-family: 'Hind', sans-serif;
-        background-color: #EEEEEE;
+        background-color: #f9fafb;
     }
 `;
