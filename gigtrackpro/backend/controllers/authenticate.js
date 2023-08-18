@@ -93,12 +93,11 @@ exports.registerUser = async (req, res) => {
         }
         const signupUser = await(addUser(newUser));
         if (signupUser){
-            res.status(200).json({message: 'User registered successfully.'})
+            return res.status(200).json({message: 'User registered successfully.'})
         }
-        return res.status(200).json({ message: 'User registered successfully.' });
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ message: 'Server Error.' });
+        res.status(500).json({ message: 'Server Error.' });
     }
 };
 

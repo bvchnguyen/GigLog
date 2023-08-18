@@ -7,7 +7,13 @@ const passport = require('passport');
 const router = require('express').Router();
 
 router.post('/signup', registerUser)
+        .get('/signup', (req, res) =>{
+            res.render('pages/signup');
+        })
         .post('/login', loginUser)
+        .get('/login', (req, res) =>{
+            res.render('pages/login');
+        })
         .get('/getProfile', passport.authenticate('jwt', { session: false }), getProfileData) 
         .post('/add-earning', addEarnings)
         .get('/get-earning', getEarnings)

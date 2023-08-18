@@ -1,21 +1,25 @@
 const express = require('express');
 const cors = require('cors');
-const { db } = require('./db/db');
-const { readdirSync } = require('fs');
 const passport = require('passport');
 const app = express();
-// const passportJWT = require('./controllers/passport');
+const { db } = require('./db/db');
+const { readdirSync } = require('fs');
+const path = require('path'); 
 
 require('dotenv').config();
 const PORT = process.env.PORT;
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
 // Middleware
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors({}))
 app.use(passport.initialize());
-// passportJWT(passport);
+app.use(express.static(path.join(__dirname, 'public')));
 require('./controllers/passport')(passport);
-app.set('view engine', 'ejs');
+
 
 const server = () => {
     db()
@@ -24,7 +28,9 @@ const server = () => {
     })
 };
 app.get('/', (req, res)=> {
-    res.send('Backend is connected and running...')
+    res.render('home', {
+        local_css: "home.css",
+    });
 })
 
 // Routes
