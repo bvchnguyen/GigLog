@@ -5,28 +5,28 @@ export const menuItems = [
         id: 1,
         title: 'Dashboard',
         icon: dashboard,
-        link: '/dashboard',
+        link: '/account/dashboard',
 
     },
     {
         id: 2,
         title: 'Earnings',
         icon: earning,
-        link: '/Earnings',
+        link: '/account/earnings',
 
     },
     {
         id: 3,
         title: 'Analytics',
         icon: chart,
-        link: '/Analytics',
+        link: '/account/analytics',
 
     },
     {
         id: 4,
         title: 'Statements',
         icon: file,
-        link: '/Statements',
+        link: '/account/statements',
 
     }
 ]

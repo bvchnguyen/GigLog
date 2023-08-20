@@ -1,14 +1,42 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { Link, Navigate } from 'react-router-dom';
 import styled from 'styled-components';
 import TopNav from '../components/Navigation/TopNav';
 
 function Signup (){
+
+    const [firstName, setFirstName] = React.useState('');
+    const [lastName, setLastName] = React.useState('');
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const [redirect, setRedirect] = React.useState(false);
+
+    async function handleSignUpSubmit(e){
+        e.preventDefault();
+        try{
+            const response = await axios.post('/signup', {
+                firstName,
+                lastName,
+                email,
+                password
+            });
+            alert('User Registered.');
+            setRedirect(true);
+        } catch (error){ 
+            alert('Registration Failed!');
+            console.log(error);
+        }
+    }
+    if (redirect) {
+        return <Navigate to="/" />
+    }
+
     return(
         <SignupStyled>
             <TopNav />
             <div className='signup-container'>
-                <div className='signup-form'>
+                <form className='signup-form' onSubmit={handleSignUpSubmit}>
                     <div className='signup-heading'>
                     <h1>Create Your Account</h1>
                         <p>100% Free. No Credit Cards Needed.</p>
@@ -18,16 +46,20 @@ function Signup (){
                         <h4>First Name</h4>
                         <input 
                             className={'input-highlight'}
+                            value={firstName}
                             type="firstName" 
                             placeholder="First Name" 
+                            onChange={(e) => setFirstName(e.target.value)}
                         />
                     </div>
                     <div className='signup-input'>
                         <h4>Last Name</h4>
                         <input 
                             className={'input-highlight'}
+                            value={lastName}
                             type="lastName" 
-                            placeholder="Last Name" 
+                            placeholder="Last Name"
+                            onChange={(e) => setLastName(e.target.value)}
                         />
                     </div>
                 </div>
@@ -35,26 +67,30 @@ function Signup (){
                     <h4>Email Address</h4>
                     <input 
                         className={'input-highlight'}    
+                        value={email}
                         type="email" 
                         placeholder="Email" 
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
                 <div className='signup-input'>
                     <h4>Password</h4>
                     <input
-                        className={'input-highlight'} 
+                        className={'input-highlight'}
+                        value={password}
                         type="password" 
                         placeholder="Password"
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
                 <p className='t-n-p'>By submitting, you agree to our 
                 <Link href="/"> terms and conditions</Link> and
                 <Link href="/"> private policy</Link>.</p>
-                <button className="log-button">Sign Up</button>
+                <button type='submit' className="signup-button">Sign Up</button>
                 <div className='route-login'>
                     <p>Already have an account? <Link className='login-link' href="/login">Login</Link></p>
                 </div>
-            </div>
+            </form>
                 </div>
                
         </SignupStyled>
@@ -141,7 +177,7 @@ const SignupStyled = styled.div`
     a{
         text-decoration: none;
     }
-    .log-button{
+    .signup-button{
         width: 100%;
         margin-top: 10px;
         background-color: #3FC060;
