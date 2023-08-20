@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const EarningsSchema = new mongoose.Schema({
+    owner: {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User'
+    },
     amount: {
         type: Number, 
         required: true,

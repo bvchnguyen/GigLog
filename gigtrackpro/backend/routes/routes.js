@@ -8,11 +8,11 @@ const router = require('express').Router();
 
 router.post('/signup', registerUser)
         .get('/signup', (req, res) =>{
-            res.render('pages/signup');
+            res.send('<h1>Signup Successful</h1>')
         })
         .post('/login', loginUser)
         .get('/login', (req, res) =>{
-            res.render('pages/login');
+            res.send('<h1>Login Successful</h1>')
         })
         .get('/getProfile', passport.authenticate('jwt', { session: false }), getProfileData) 
         .post('/add-earning', addEarnings)
