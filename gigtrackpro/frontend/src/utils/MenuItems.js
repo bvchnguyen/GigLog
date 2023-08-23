@@ -1,34 +1,41 @@
-import { dashboard, chart, file, earning, signout } from "./Icons"
+import { dashboard, chart, file, earning, signout, goal } from "./Icons"
 
 export const menuItems = [
     {
         id: 1,
         title: 'Dashboard',
         icon: dashboard,
-        link: '/dashboard',
+        link: '/account/dashboard',
 
     },
     {
         id: 2,
         title: 'Earnings',
         icon: earning,
-        link: '/dashboard',
+        link: '/account/earnings',
 
     },
     {
         id: 3,
         title: 'Analytics',
         icon: chart,
-        link: '/dashboard',
+        link: '/account/analytics',
 
     },
     {
         id: 4,
         title: 'Statements',
         icon: file,
-        link: '/dashboard',
+        link: '/account/statements',
 
-    }
+    },
+    {
+        id: 5,
+        title: 'Set Goals',
+        icon: goal,
+        link: '/accout/set-goals',
+
+    },
 ]
 export const settingItems = [
     {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Form from "../Form/Form";
 import ExpenseForm from "../Form/ExpenseForm"
 import styled from 'styled-components';
+import { x, plus } from '../../utils/Icons';
 
 function ExpenseModal (){
     const [modal, setModal] = useState(false);
@@ -21,7 +22,7 @@ function ExpenseModal (){
     return (
         <ExpenseModalStyled>
             <button onClick={toggleModal} className="btn-modal">
-                <h3>Log Expense</h3>
+                { plus }<h3>Log Expense</h3>
             </button>
             {modal && (
                 <div className="modal">
@@ -32,7 +33,7 @@ function ExpenseModal (){
                         <button 
                             className="close-modal" 
                             onClick={toggleModal}
-                        >X
+                        > { x }
                         </button>
                     </div>
                 </div>
@@ -64,14 +65,15 @@ const ExpenseModalStyled = styled.nav`
         place-items: center;
         text-align: center;
         border: none;
-        height: 30px;
-        width: 100px;
-        border-radius: 7px;
+        height: 35px;
+        width: 135px;  
+        /* border-radius: 7px; */
         letter-spacing: 2px;
         h3{
             margin-left: 5px;
-            font-size: 12px;
-            font-weight: 100;
+            font-size: 13px;
+            font-weight: 400;
+            font-style: bold;
         } 
     }
     .modal{

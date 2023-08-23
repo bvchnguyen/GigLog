@@ -1,10 +1,21 @@
 const { addEarnings, getEarnings, deleteEarnings } = require('../controllers/earning');
 const { addExpense, getExpense, deleteExpense } = require('../controllers/expense');
+const { registerUser, loginUser, getProfileData } = require('../controllers/authenticate');
 const { performAggregation } = require('../db/aggregation');
 
+const passport = require('passport');
 const router = require('express').Router();
 
-router.post('/add-earning', addEarnings)
+router.post('/signup', registerUser)
+        .get('/signup', (req, res) =>{
+            res.send('<h1>Signup Successful</h1>')
+        })
+        .post('/login', loginUser)
+        .get('/login', (req, res) =>{
+            res.send('<h1>Login Successful</h1>')
+        })
+        .get('/getProfile', passport.authenticate('jwt', { session: false }), getProfileData) 
+        .post('/add-earning', addEarnings)
         .get('/get-earning', getEarnings)
         .delete('/delete-earning/:id', deleteEarnings)
         .post('/add-expense', addExpense)

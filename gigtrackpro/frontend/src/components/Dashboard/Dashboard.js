@@ -59,8 +59,8 @@ function Dashboard () {
                     </div>
                     <div className="secondary-container">
                         <div className="chart-container">
-                            <StatsChart />
                             <WeeklyMetrics />
+                            <StatsChart />
                         </div>
                         <div className="right-container">
                             <WeeklyGoalBar goalAmount={goalAmount.toFixed(2)} />
@@ -75,6 +75,8 @@ function Dashboard () {
 }
 
 const DashboardStyled = styled.div `
+    width: 100%;
+    height: 100vh;
     .secondary-container{
         display: flex;
         flex-direction: row;
