@@ -14,6 +14,9 @@ router.post('/signup', registerUser)
         .get('/login', (req, res) =>{
             res.send('<h1>Login Successful</h1>')
         })
+        .get('/logout', (req, res) =>{
+            req.logout();
+        })
         .get('/getProfile', passport.authenticate('jwt', { session: false }), getProfileData) 
         .post('/add-earning', addEarnings)
         .get('/get-earning', getEarnings)
