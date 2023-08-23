@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { BrowserRouter as Router, Routes, Route, Redirect } from 'react-router-dom';
+import {  Router, Routes, Route, Redirect } from 'react-router-dom';
 import { Mainlayout } from './styles/Layouts'
 import Landing from './pages/Landing';
 import Signup from './pages/Signup';
@@ -16,7 +16,6 @@ axios.withCredentials = true;
 
 function App() {
     return (
-      <Router>
         <AppStyled className="App">
             <Routes>
                 <Route path="/" element={<Landing />} />
@@ -29,7 +28,6 @@ function App() {
                 </Route>
             </Routes>
         </AppStyled>
-      </Router>
     );
   }
 const AppStyled = styled.div`
