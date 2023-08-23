@@ -12,12 +12,8 @@ function Navigation ({active, setActive}){
         <NavStyled>
             <div className='logo-container'>
                 {/* <img  src={avatar} alt ="Avatar"/> */}
-                <h2>GigLog</h2>
+                <h2 className='logo-text'>Gig | Log</h2>
             </div>
-            <div className='log-btns'>
-                        {/* <EarningsModal />
-                        <ExpenseModal /> */}
-                    </div>
             <ul className='menu-items'>
                 <h2>MAIN MENU</h2>
                 {menuItems.map((item) => {
@@ -34,25 +30,9 @@ function Navigation ({active, setActive}){
                        </Link>
                 })}
             </ul>
-            <ul className='menu-items'>
-                <h2>SETTING</h2>
-                {settingItems.map((item) => {
-                    return <Link
-                        key = {item.id} 
-                        to={item.link}
-                        // Set item ID upon click
-                        onClick={() => setActive(item.id)}
-                        // If active Matches item ID, then className is active, otherwise nothing
-                        className={active === item.id ? 'active': ''}
-                    >
-                        {item.icon}
-                        <span>{item.title}</span>
-                    </Link>
-                })}
-            </ul>
-            <div className='bottom-nav'>
-
-            </div>
+            {/* <div className='bottom-nav'>
+                <h1>HELLO</h1>
+            </div> */}
         </NavStyled>
     )
 }
@@ -71,7 +51,8 @@ const NavStyled = styled.nav`
 
     .log-btns{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
         gap: .5rem;
         /* padding: 2rem;  */
@@ -79,9 +60,11 @@ const NavStyled = styled.nav`
     .logo-container{
         /* position: relative; */
         /* height: 100px; */
+        /* background-color: #3FC060; */
         display: flex;
         flex-direction: row;
         align-items: center;
+        justify-content: center;
         gap: .5rem;
         img {
             width: 40px;
@@ -90,9 +73,10 @@ const NavStyled = styled.nav`
             object-fit: cover;
             /* border: 2px solid white; */   
         }
-        h2{
+        .logo-text{
+            font-family: 'Inter';
             font-weight: 400;
-            font-size: 15px;
+            font-size: 20px;
             margin-bottom: .5rem;
         }
     }

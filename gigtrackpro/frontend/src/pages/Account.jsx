@@ -6,6 +6,8 @@ import Navigation from '../components/Navigation/Navigation';
 import Dashboard from '../components/Dashboard/Dashboard';
 import Earnings from '../components/Earnings/Earnings';
 import Statistics from '../components/Statistics/Statistics';
+import EarningsModal from '../components/Modal/EarningsModal';
+import ExpenseModal from '../components/Modal/ExpenseModal';
 
 function Account() {
 
@@ -18,12 +20,15 @@ function Account() {
             <div className='route-content'>
                 <div className='content-header'>
                     <div className='content-title'>
-                        <h3>Weekly Overview</h3>
+                        { active === 1 && <h3>Weekly Overview</h3> }
+                        { active === 2 && <h3>Earnings</h3> }
+                        { active === 3 && <h3>Statistics</h3> }
+                        { active === 4 && <h3>Statements</h3> }
                         <p>Today is August 20, 2023</p>
                     </div> 
-                    <div className='user-info'>
-                        <h3>Username</h3>
-                        <h3>email</h3>
+                    <div className='log-btns-con'>
+                        <EarningsModal />
+                        <ExpenseModal />
                     </div>
                 </div>
                 <Routes>
@@ -73,6 +78,13 @@ const AccountStyled = styled.div`
             p{
                 font-size: 15px;
             }
+        }
+        .log-btns-con{
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            align-items: flex-end;
+
         }
     }
 `;
