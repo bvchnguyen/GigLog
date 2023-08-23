@@ -18,3 +18,7 @@ export const gas = <i class="fa-solid fa-gas-pump"></i>
 export const x = <i class="fa-solid fa-x"></i>
 export const pen = <i class="fa-solid fa-pen"></i>
 export const goal = <i class="fa-regular fa-square-check"></i>
+export const up = <i class="fa-solid fa-chevron-up"></i>
+export const down = <i class="fa-solid fa-chevron-down"></i>
+export const profile = <i class="fa-regular fa-user"></i>
+export const setting = <i class="fa-solid fa-wrench"></i>

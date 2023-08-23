@@ -2,12 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import  avatar from '../../img/avatar.jpg';
 import { Link } from 'react-router-dom';
-import { menuItems, settingItems } from '../../utils/MenuItems'
-import { signout } from '../../utils/Icons' 
-import EarningsModal from '../Modal/EarningsModal'
-import ExpenseModal from '../Modal/ExpenseModal'
+import { menuItems, settingItems } from '../../utils/MenuItems';
+import { signout } from '../../utils/Icons';
+import EarningsModal from '../Modal/EarningsModal';
+import ExpenseModal from '../Modal/ExpenseModal';
+import DropDownProfile from './ProfileDropdown';
 
 function Navigation ({active, setActive}){
+
+
     return (
         <NavStyled>
             <div className='logo-container'>
@@ -30,9 +33,9 @@ function Navigation ({active, setActive}){
                        </Link>
                 })}
             </ul>
-            {/* <div className='bottom-nav'>
-                <h1>HELLO</h1>
-            </div> */}
+            <div className='profile-select'>
+                <DropDownProfile />
+            </div>
         </NavStyled>
     )
 }
@@ -55,12 +58,8 @@ const NavStyled = styled.nav`
         align-items: center;
         justify-content: center;
         gap: .5rem;
-        /* padding: 2rem;  */
     }
     .logo-container{
-        /* position: relative; */
-        /* height: 100px; */
-        /* background-color: #3FC060; */
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -71,7 +70,6 @@ const NavStyled = styled.nav`
             height: 40px;
             border-radius: 50%;
             object-fit: cover;
-            /* border: 2px solid white; */   
         }
         .logo-text{
             font-family: 'Inter';
@@ -93,6 +91,7 @@ const NavStyled = styled.nav`
         }
         span{
             font-size: 12px;
+            font-weight: 500;
         }
         a{
             font-family: Arial, Helvetica, sans-serif;
@@ -109,19 +108,19 @@ const NavStyled = styled.nav`
             border-radius: 5px;
             font-size: 15px;
             text-decoration: none;
-            color: inherit
+            color: inherit;
         }
         a:hover{
             color: white;
-            box-shadow: inset 400px 0 0 0 #3FC060;
+            box-shadow: inset 400px 0 0 0 #8ddda1;
             font-style: italic;
         }
         a.active {
-            background-color: #3FC060;
+            background-color: #8ddda1;
             color: #2c2c2c;
         }
     }
-    /* .active{
+    a.active{
         &::before{
             content: "";
             position: absolute;
@@ -129,11 +128,17 @@ const NavStyled = styled.nav`
             top: 0;
             width: 6px;
             height: 100%;
-            background: #3FC060;
+            background: #327f46;
             border-radius: 0 10px 10px 0;
             font-style: italic;
         }
-    } */
+    }
+    .profile-select{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: 50%;
+    }
 `;
 
 export default Navigation;
