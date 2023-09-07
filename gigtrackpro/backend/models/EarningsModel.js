@@ -28,7 +28,7 @@ const EarningsSchema = new mongoose.Schema({
     category: {
         type: String, 
         required: true,
-        trim: true
+        trim: false
     },
     startingMi: {
         type: Number,
@@ -39,7 +39,19 @@ const EarningsSchema = new mongoose.Schema({
         type: Number,
         require: false,
         trim: true
-    }
+    },
+    totalMi: {
+        type: Number,
+        require: false,
+        trim: true
+    },
 }, {timestamps: true})
+
+EarningsSchema.pre('save', async function(next){
+    if(this.startingMi !== undefined && this.endingMi !== undefined){
+        this.totalMi = this.endingMi - this.startingMi;
+    }
+    next(); 
+})
 
 module.exports = mongoose.model('Earnings', EarningsSchema)

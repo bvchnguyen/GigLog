@@ -14,6 +14,6 @@ module.exports = function async(passport){
         if (userId) {
             return done(null, userId);
         }
-        return done(err, false);
+        return done(null, false);
     }))
 }

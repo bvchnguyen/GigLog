@@ -1,4 +1,4 @@
-import { dashboard, chart, file, earning, signout, goal } from "./Icons"
+import { dashboard, chart, file, earning, signout, goal, profile, setting } from "./Icons";
 
 export const menuItems = [
     {
@@ -37,40 +37,26 @@ export const menuItems = [
 
     },
 ]
-export const settingItems = [
+export const dropDownItems = [
     {
-        id: 5,
-        title: 'Account',
-        icon: dashboard,
-        link: '/dashboard',
+        id: 1,
+        title: 'Profile',
+        icon: profile,
+        link: '/profile',
 
     },
     {
-        id: 6,
-        title: 'Set Goals',
-        icon: earning,
-        link: '/dashboard',
-
-    },
-    {
-        id: 7,
+        id: 2,
         title: 'Settings',
-        icon: chart,
-        link: '/dashboard',
+        icon: setting,
+        link: '/settings',
 
     },
     {
-        id: 8,
-        title: 'Support',
-        icon: file,
-        link: '/dashboard',
-
-    },
-    {
-        id: 9,
-        title: 'Signout',
+        id: 3,
+        title: 'Sign out',
         icon: signout,
-        link: '/dashboard',
+        link: '/logout',
 
-    }
+    },
 ]

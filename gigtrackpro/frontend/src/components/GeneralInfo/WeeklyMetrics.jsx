@@ -85,7 +85,52 @@ function WeeklyMetrics (){
             </div>
             </div>
             ) : (
-                <p>Loading...</p>
+                <div className="avgstats-content">
+                <div className="indi-content" style={{ border: `2px solid ${checkBorderColor(earningStats, earningCondition)}`}}>
+                    <div className="inner-content">
+                        <div className="text">
+                            <p>Dollars / trip</p>
+                            <h2>${0}</h2>
+                        </div>
+                        <div className="miles-rating">
+                            <h6>Good</h6>
+                        </div>
+                    </div>
+                </div>
+                <div className="indi-content" style={{ border: `2px solid ${checkBorderColor(stats, condition)}`}}>
+                    <div className="inner-content">
+                        <div className="text">
+                            <p className="box-label">Dollars / mi</p>
+                            <h2>${0}</h2>
+                        </div>
+                        <div className="miles-rating">
+                            <h6>Good</h6>
+                        </div>
+                    </div>
+                </div>
+                <div className="indi-content" style={{ border: `2px solid ${checkBorderColor(stats, condition)}`}}>
+                    <div className="inner-content">
+                        <div className="text">
+                            <p className="box-label">Daily Avg</p>
+                            <h2>${0}</h2>
+                        </div>
+                        <div className="miles-rating">
+                            <h6>Good</h6>
+                        </div>
+                    </div>
+                </div>
+                <div className="indi-content" style={{ border: `2px solid ${checkBorderColor(stats, condition)}`}}>
+                    <div className="inner-content">
+                        <div className="text">
+                            <p className="box-label">Trips / Day</p>
+                            <h2>{0}</h2>
+                        </div>
+                        <div className="miles-rating">
+                            <h6>Good</h6>
+                        </div>
+                    </div>
+                </div>
+                </div>
             )}
         </WeeklyMetricsStyled>
     )

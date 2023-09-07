@@ -47,7 +47,28 @@ function WeeklyStats () {
                     </div>
                 </div>
             ) : (
-                <p>Loading...</p>
+                <div className="GeneralInfo-container">          
+                <div className="totalEarnings-container">
+                    <p>Earnings</p>
+                    <h2>${0}</h2>
+                </div>
+                <div className="totalTrips-container">
+                    <p>Completed Trips</p>
+                    <h2>{0}</h2>
+                </div>
+                <div className="totalDistance-container">
+                    <p>Mileage Driven</p>
+                    <h2>{0}mi</h2>
+                </div>
+                <div className="totalDistance-container">
+                    <p>Compensation</p>
+                    <h2>${0}</h2>
+                </div>
+                <div className="totalDistance-container">
+                    <p>Fuel Spent</p>
+                    <h2>${0}</h2>
+                </div>
+            </div>
             )}
         </WeeklyStatsStyled >
     )

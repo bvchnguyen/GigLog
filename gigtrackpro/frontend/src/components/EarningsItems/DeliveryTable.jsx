@@ -29,7 +29,7 @@ function DeliveryTable({ columns, data }) {
     <DeliveryTableStyled>
         <div className="title-con">
             <h2>Recent Deliveries</h2>
-            <button className="sort">Amount</button>
+            {/* <button className="sort">Amount</button> */}
         </div>
         <div className="table-container">
             <table {...getTableProps()} border="1">
