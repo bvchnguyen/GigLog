@@ -26,7 +26,7 @@ function DropDownProfile (){
                 <button 
                     className={open ? 'active': ''}
                     onClick={() => setOpen(!open)}  
-                >First Last { open ? up : down }</button>
+                >Bach Nguyen { open ? up : down }</button>
             </div>
 
             {open && (

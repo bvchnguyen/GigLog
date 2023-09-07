@@ -25,7 +25,7 @@ function Account() {
                         { active === 2 && <h3>Earnings</h3> }
                         { active === 3 && <h3>Statistics</h3> }
                         { active === 4 && <h3>Statements</h3> }
-                        <p>Today is August 20, 2023</p>
+                        <p>Today is September 8, 2023</p>
                     </div> 
                     <div className='log-btns-con'>
                         <EarningsModal />
