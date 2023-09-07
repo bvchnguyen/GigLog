@@ -1,6 +1,6 @@
-# GigTrackerPro
+# GigLog
 
-GigTrackerPro is a web-based application designed to help gig economy contractors who uses application vendors such as UberEats, DoorDash, InstaCarts, and the many likes, track their earnings and expenses. It provides an intuitive interface for managing financial and logistical data, and offers dynamic statistics to gain insights into your gig economy activities.
+GigLog is a web-based application designed to help gig economy contractors who uses application vendors such as UberEats, DoorDash, InstaCarts, and the many likes, track their earnings and expenses. It provides an intuitive interface for managing financial and logistical data, and offers dynamic statistics to gain insights into your gig economy activities.
 
 ## Built with
 
