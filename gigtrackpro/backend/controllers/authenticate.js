@@ -129,3 +129,8 @@ exports.getProfileData = async (req, res) => {
         return res.status(500).json({ message: 'Server Error.' });
     }
 }
+
+exports.logoutUser = (req, res) => {
+    req.logout();
+    res.redirect('/');
+}

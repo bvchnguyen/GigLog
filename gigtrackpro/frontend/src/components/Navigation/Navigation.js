@@ -10,11 +10,9 @@ import DropDownProfile from './ProfileDropdown';
 
 function Navigation ({active, setActive}){
 
-
     return (
         <NavStyled>
             <div className='logo-container'>
-                {/* <img  src={avatar} alt ="Avatar"/> */}
                 <h2 className='logo-text'>Gig | Log</h2>
             </div>
             <ul className='menu-items'>
@@ -23,9 +21,7 @@ function Navigation ({active, setActive}){
                     return <Link 
                         key = {item.id}
                         to={item.link}
-                        // Set item ID upon click
                         onClick={() => setActive(item.id)}
-                        // If active Matches item ID, then className is active, otherwise nothing
                         className={active === item.id ? 'active': ''}
                     >
                         {item.icon}

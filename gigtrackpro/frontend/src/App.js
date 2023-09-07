@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import {  Router, Routes, Route, Redirect } from 'react-router-dom';
+import {  Router, Routes, Route } from 'react-router-dom';
 import { Mainlayout } from './styles/Layouts'
 import Landing from './pages/Landing';
 import Signup from './pages/Signup';
@@ -22,9 +22,6 @@ function App() {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/account/*" element={<Account />}>
-                    {/* <Route path='dashboard' element={<Dashboard />} />
-                    <Route path='overview' element={<Earnings /> } />
-                    <Route path='analytics' element={<Statistics />} /> */}
                 </Route>
             </Routes>
         </AppStyled>

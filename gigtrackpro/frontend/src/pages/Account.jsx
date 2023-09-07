@@ -1,6 +1,6 @@
 import React, { Children, useState } from 'react'
 import styled from 'styled-components'
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { Mainlayout } from '../styles/Layouts';
 import Navigation from '../components/Navigation/Navigation';
 import Dashboard from '../components/Dashboard/Dashboard';
@@ -8,6 +8,7 @@ import Earnings from '../components/Earnings/Earnings';
 import Statistics from '../components/Statistics/Statistics';
 import EarningsModal from '../components/Modal/EarningsModal';
 import ExpenseModal from '../components/Modal/ExpenseModal';
+import Statement from '../components/Statement/Statement';
 
 function Account() {
 
@@ -35,6 +36,8 @@ function Account() {
                     <Route path='dashboard' element={<Dashboard />} />
                     <Route path='overview' element={<Earnings /> } />
                     <Route path='analytics' element={<Statistics />} />
+                    <Route path='Statements' element={<Statement />} />
+                    <Route path="/logout" element={<Navigate to="/login" />} />
                 </Routes>
             </div>
             </div>

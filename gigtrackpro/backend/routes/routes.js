@@ -1,6 +1,6 @@
 const { addEarnings, getEarnings, deleteEarnings } = require('../controllers/earning');
 const { addExpense, getExpense, deleteExpense } = require('../controllers/expense');
-const { registerUser, loginUser, getProfileData } = require('../controllers/authenticate');
+const { registerUser, loginUser, getProfileData, logoutUser } = require('../controllers/authenticate');
 const { performAggregation } = require('../db/aggregation');
 
 const passport = require('passport');
@@ -14,8 +14,18 @@ router.post('/signup', registerUser)
         .get('/login', (req, res) =>{
             res.send('<h1>Login Successful</h1>')
         })
-        .get('/logout', (req, res) =>{
-            req.logout();
+        .post("/logout", (req, res, next) => {
+            res.cookie("jwt", "", { expires: new Date(0) });
+            req.logout(function (err) {
+                if (err) {
+                    return next(err);
+                }
+                console.log("Logged out");
+                res.redirect("http://localhost:3001/login");
+            });
+        })
+        .get('/protected-route', passport.authenticate('jwt', { session: false }), (req, res) => {
+            res.json({ message: 'You have access to this protected route!' });
         })
         .get('/getProfile', passport.authenticate('jwt', { session: false }), getProfileData) 
         .post('/add-earning', addEarnings)

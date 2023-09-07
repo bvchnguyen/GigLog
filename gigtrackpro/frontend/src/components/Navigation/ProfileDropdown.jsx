@@ -1,13 +1,25 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { up, down } from '../../utils/Icons';
 import { dropDownItems } from "../../utils/MenuItems";
 
 function DropDownProfile (){
     
     const [open, setOpen] = useState(false);
-    
+    const history = useNavigate();
+
+    const handleLogout = async () => {
+        try{
+            await axios.get('/logout');
+            history.push('/');
+        }
+        catch (error){
+            console.error('logout failed', error);
+        }
+    };
+
     return (
         <DropDownProfileStyled>
             <div className="profile-btn">
@@ -21,6 +33,15 @@ function DropDownProfile (){
             <DropDownContent open={open}>
             <ul className='dropdown'>
                 {dropDownItems.map((item) => {
+                    if(item.title === 'Sign out'){
+                        return <Link 
+                            key = {item.id}
+                            onClick={handleLogout}
+                            >
+                            {item.icon}                        
+                            <span>{item.title}</span>
+                           </Link>
+                    }
                     return <Link 
                         key = {item.id}
                         to={item.link}

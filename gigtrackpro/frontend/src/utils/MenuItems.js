@@ -42,14 +42,14 @@ export const dropDownItems = [
         id: 1,
         title: 'Profile',
         icon: profile,
-        link: '/dashboard',
+        link: '/profile',
 
     },
     {
         id: 2,
         title: 'Settings',
         icon: setting,
-        link: '/dashboard',
+        link: '/settings',
 
     },
     {
