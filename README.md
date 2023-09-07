@@ -9,6 +9,8 @@ GigTrackerPro is a web-based application designed to help gig economy contractor
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 
+![Dashboard](gigtrackpro/frontend/resources/mu2.png)
+
 ## Features
 
 - **Dashboard & UI:**
